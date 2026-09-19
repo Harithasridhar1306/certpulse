@@ -243,8 +243,8 @@ async function askAITutor(){
   const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
   const messages=[
-    {role:"system",content:"You are a concise cloud certification tutor. Explain technical concepts accurately and simply. Do not claim access to a live cluster."},
-    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nExplain why the answer is right or wrong, then give one practical tip. Keep it under 140 words."}
+    {role:"system",content:"You are a concise cloud certification tutor. Explain technical concepts accurately and simply. Do not claim access to a live cluster. If the learner's answer is wrong, explicitly explain why it is wrong and contrast it with the correct concept. If the learner's answer is correct, explain why it is correct. Always identify the key clue in the question and give one practical exam tip."},
+    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nUse this structure: Correct answer; Why it is correct; Why the learner's answer is wrong (only when wrong); Key clue; Exam tip. Keep it beginner-friendly, technically accurate, and under 140 words."}
   ];
   try{
     const out=await gen(messages,{max_new_tokens:180,temperature:.35,do_sample:true});
