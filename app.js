@@ -235,3 +235,50 @@ function practiceSimilar(){
   if(!pool.length)return;
   current={...current,difficulty:"Focused",type:"Adaptive",questions:pool.sort(()=>Math.random()-.5).slice(0,5)};index=0;answers=Array(5).fill(null);seconds=900;startTimer();render();
 }
+
+
+function __cpState(){try{return JSON.parse(localStorage.getItem("certpulse-state")||'{"attempts":[]}')}catch(e){return {attempts:[]}}}
+function __cpSave(s){localStorage.setItem("certpulse-state",JSON.stringify(s))}
+function __cpReadiness(cert){
+  const a=__cpState().attempts.filter(x=>x.certification===cert);
+  if(!a.length)return 0;
+  const recent=a.slice(-5),avg=recent.reduce((n,x)=>n+x.score,0)/recent.length;
+  const d={};a.flatMap(x=>x.questions||[]).forEach(q=>{if(!d[q.domain])d[q.domain]={c:0,t:0};d[q.domain].t++;if(q.correct)d[q.domain].c++});
+  const weak=Object.values(d).length?Math.min(...Object.values(d).map(x=>x.c/x.t))*100:avg;
+  return Math.round(avg*.75+weak*.25);
+}
+function renderDashboard(){
+  if(!dashboard)return;
+  const s=__cpState(),a=s.attempts||[],total=a.reduce((n,x)=>n+(x.questions?.length||0),0),correct=a.reduce((n,x)=>n+(x.correct||0),0);
+  const d={};a.flatMap(x=>x.questions||[]).forEach(q=>{if(!d[q.domain])d[q.domain]={c:0,t:0};d[q.domain].t++;if(q.correct)d[q.domain].c++});
+  const rows=Object.entries(d).sort((x,y)=>x[1].c/x[1].t-y[1].c/y[1].t),certs=Object.keys(exams);
+  const cert=certs.sort((x,y)=>__cpReadiness(x)-__cpReadiness(y))[0],weak=rows[0]?.[0]||"your weak areas";
+  dashboard.innerHTML='<div class="dashboard-head"><div><div class="eyebrow">ADAPTIVE LEARNING ENGINE</div><h2>Your certification signal.</h2><p>Every attempt feeds the next practice set. Weak concepts get more weight automatically.</p></div><button class="ghost-button" onclick="resetCertPulse()">Reset progress</button></div>'+
+  '<div class="stats-grid"><div class="stat-card"><span>Attempts</span><strong>'+a.length+'</strong></div><div class="stat-card"><span>Questions</span><strong>'+total+'</strong></div><div class="stat-card"><span>Accuracy</span><strong>'+(total?Math.round(correct/total*100):0)+'%</strong></div><div class="stat-card"><span>Readiness</span><strong>'+(cert?__cpReadiness(cert):0)+'%</strong></div></div>'+
+  '<div class="dashboard-grid"><div class="dashboard-panel"><div class="panel-title">Knowledge map</div>'+
+  (rows.length?rows.slice(0,10).map(([name,v])=>{const p=Math.round(v.c/v.t*100);return '<div class="domain-row"><div><span>'+escapeHtml(name)+'</span><strong>'+p+'%</strong></div><small>'+v.t+' answered</small><div class="mini-track"><i style="width:'+p+'%"></i></div></div>'}).join(""):'<div class="empty-state">Take a mock to build your knowledge map.</div>')+
+  '</div><div class="dashboard-panel"><div class="panel-title">Next recommended</div><div class="recommend-card"><span class="recommend-kicker">ADAPTIVE PRACTICE</span><strong>'+escapeHtml(cert||"Start your first mock")+'</strong><p>Current focus: <b>'+escapeHtml(weak)+'</b>. Difficulty adjusts as your recent scores improve.</p>'+(cert?'<button class="start-button" onclick="startAdaptive(\''+cert+'\')">Start adaptive →</button>':'')+'</div><div class="panel-title recent-title">Recent attempts</div>'+
+  (a.length?a.slice(-4).reverse().map(x=>'<div class="attempt-row"><div><strong>'+escapeHtml(x.certification)+'</strong><small>'+new Date(x.date).toLocaleDateString()+' · '+x.questions.length+' questions</small></div><b>'+x.score+'%</b></div>').join(""):'<div class="empty-state">No attempts yet.</div>')+
+  '</div></div>';
+}
+function resetCertPulse(){if(confirm("Reset all CertPulse learning progress on this browser?")){localStorage.removeItem("certpulse-state");renderDashboard()}}
+function startAdaptive(k){
+  const all=exams[k].questions.slice(),attempts=__cpState().attempts.filter(a=>a.certification===k),domains={};
+  attempts.flatMap(a=>a.questions||[]).forEach(q=>{if(!domains[q.domain])domains[q.domain]={c:0,t:0};domains[q.domain].t++;if(q.correct)domains[q.domain].c++});
+  const avg=attempts.length?attempts.slice(-3).reduce((n,a)=>n+a.score,0)/Math.min(3,attempts.length):0;
+  const difficulty=avg>=85?"Hard":avg>=65?"Medium":"Easy";
+  all.sort((x,y)=>{const a=domains[x[6]],b=domains[y[6]],aw=a?1+(1-a.c/a.t)*5:1.3,bw=b?1+(1-b.c/b.t)*5:1.3;return bw-aw||Math.random()-.5});
+  const same=all.filter(q=>q[5]===difficulty),other=all.filter(q=>q[5]!==difficulty),selected=[...same,...other].slice(0,20);
+  attemptSaved=false;currentKey=k;current={...exams[k],difficulty:"Adaptive · "+difficulty,type:"Mixed",questions:selected};
+  index=0;answers=Array(selected.length).fill(null);seconds=2700;cards.hidden=true;dashboard.hidden=true;document.getElementById("practice").hidden=false;startTimer();render();
+}
+function recordAttempt(){
+  if(attemptSaved)return;
+  const correct=answers.reduce((n,a,i)=>n+(a===current.questions[i][2]?1:0),0);
+  const s=__cpState();s.attempts.push({date:new Date().toISOString(),certification:currentKey,score:Math.round(correct/current.questions.length*100),correct,questions:current.questions.map((q,i)=>({id:q[10],domain:q[6],type:q[4],difficulty:q[5],correct:answers[i]===q[2]}))});s.attempts=s.attempts.slice(-50);__cpSave(s);attemptSaved=true;renderDashboard();
+}
+function practiceSimilar(){
+  const q=current.questions[index],pool=exams[currentKey].questions.filter(x=>x[6]===q[6]&&x[10]!==q[10]).sort(()=>Math.random()-.5).slice(0,5);
+  if(!pool.length)return;
+  current={...current,difficulty:"Focused",type:"Concept practice",questions:pool};index=0;answers=Array(pool.length).fill(null);seconds=900;startTimer();render();
+}
