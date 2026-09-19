@@ -242,9 +242,10 @@ async function askAITutor(){
   if(!gen){if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}return}
   const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
+  const referenceExplanation=q[3]||"";
   const messages=[
-    {role:"system",content:"You are a concise cloud certification tutor. Give one clear explanation grounded only in the question and answers provided. Use plain English. Never repeat words or phrases. Never produce filler, stream-of-consciousness text, or unrelated topics. Do not invent information. Do not claim access to a live cluster. Return only the requested tutor explanation."},
-    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\n\nWrite exactly 4 short sections:\n1. Correct answer: state the correct answer.\n2. Why: explain the technical concept in 1-2 sentences.\n3. Your answer: if the learner was wrong, explain specifically why their answer does not fit; if correct, say why it fits.\n4. Exam tip: give one memorable clue.\n\nMaximum 100 words. Do not add any other sections. Do not repeat the question. Do not repeat the same word or sentence unnecessarily."}
+    {role:"system",content:"You are a certification tutor rewriting a verified explanation. The reference explanation is authoritative. Do not invent technical facts or discuss unrelated topics. Return exactly four short labeled lines and STOP. Use these labels: Correct answer:, Why:, Your answer:, Exam tip:. Never repeat words or phrases unnecessarily. Maximum 70 words."},
+    {role:"user",content:"Question: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nVerified explanation: "+referenceExplanation+"\n\nRewrite the verified explanation for this learner. Keep the technical meaning unchanged. If the learner is wrong, explain why in one sentence. Return only the four labeled lines."}
   ];
   try{
     const out=await gen(messages,{max_new_tokens:110,temperature:.2,do_sample:true,repetition_penalty:1.2,no_repeat_ngram_size:4,return_full_text:false});
@@ -254,13 +255,34 @@ async function askAITutor(){
       if(Array.isArray(g)) text=g[g.length-1]?.content||"";
       else text=String(g||"");
     }
-    showAI(text.trim()||"The AI tutor did not return a usable explanation. Try again.","good");
+    text=cleanTutorOutput(text);
+    showAI(isUsableTutorOutput(text)?text:fallbackTutorExplanation(q,selected),"good");
   }catch(err){
     console.error("AI Tutor inference failed:",err);
     showAI("The local AI model hit an error. You can continue with the built-in explanation and official reference.","bad");
   }finally{
     if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}
   }
+}
+function cleanTutorOutput(text){
+  return String(text||"").replace(/<\\|[^>]+\\|>/g,"").replace(/\\s+/g," ").trim();
+}
+function isUsableTutorOutput(text){
+  if(!text || text.length<30 || text.length>700) return false;
+  const lower=text.toLowerCase();
+  if(!["correct answer:","why:","your answer:","exam tip:"].every(x=>lower.includes(x))) return false;
+  const words=lower.match(/[a-z][a-z'-]*/g)||[];
+  if(words.length<12) return false;
+  const counts={};
+  for(const w of words) counts[w]=(counts[w]||0)+1;
+  if(Object.values(counts).some(n=>n>=8)) return false;
+  return true;
+}
+function fallbackTutorExplanation(q,selected){
+  const correct=q[4]==="Terminal"?"the required manifest":q[1][q[2]];
+  const explanation=q[3]||"Review the built-in explanation for the key concept.";
+  const isCorrect=selected===q[2];
+  return "Correct answer: "+correct+"\\nWhy: "+explanation+"\\nYour answer: "+(isCorrect?"This matches the correct concept.":"This does not match the concept described by the question.")+"\\nExam tip: Focus on the key noun or action in the question before choosing.";
 }
 function showAI(msg,kind){const el=document.getElementById("ai-tutor");if(el){el.className="ai-tutor "+kind;el.innerHTML="<strong>✦ AI Tutor</strong><p>"+escapeHtml(msg)+"</p>"}}
 function choose(i){answers[index]=i;render()}
