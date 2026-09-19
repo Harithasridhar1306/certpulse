@@ -111,11 +111,31 @@ CKAD:[
 ["A Service is returning no application traffic. The Pods are healthy, but the Service selector uses app=frontend while the Pods use app=api. What is the likely issue?",["The Service selector does not match the Pod labels","The Pods need external IPs","The Service needs a Secret","The Deployment needs a CronJob"],0,"Service selectors determine which Pods become endpoints. The selector must match the relevant Pod labels.","Scenario","Medium","Networking","https://kubernetes.io/docs/concepts/services-networking/service/","Services"]
 ]};
 
+const moreQuestions={
+GCP:[
+["A team wants private VMs to reach Google APIs without assigning external IP addresses. Which feature should they enable on the subnet?",["Private Google Access","Cloud CDN","Cloud Armor","External passthrough Load Balancer"],0,"Private Google Access enables VMs without external IP addresses to reach Google APIs and services.","Scenario","Medium","Networking","https://cloud.google.com/vpc/docs/private-google-access","Private Google Access"],
+["A production API needs automatic scaling and should run from a container image without managing servers. Which service fits?",["Cloud Run","Cloud Storage","Cloud SQL","BigQuery"],0,"Cloud Run provides a managed environment for containerized applications with automatic scaling.","Architecture","Easy","Compute","https://cloud.google.com/run/docs","Cloud Run"],
+["A developer needs to determine why an IAM request is denied. Which area should be checked first?",["The principal's granted roles and applicable resource policies","The VM disk size","The subnet's region","The Cloud Storage class"],0,"IAM authorization depends on the permissions granted to the principal and applicable policies.","Troubleshooting","Medium","IAM","https://cloud.google.com/iam/docs/overview","IAM overview"],
+["Which command displays the currently configured Google Cloud project?",["gcloud config get-value project","gcloud project current","gcloud show-project","gcloud iam project"],0,"The gcloud config get-value project command displays the active project configuration.","Terminal","Easy","CLI","https://cloud.google.com/sdk/gcloud/reference/config/get-value","gcloud config get-value"]
+],
+CKA:[
+["A Deployment rollout is broken and the previous version was known to work. Which command can roll the Deployment back?",["kubectl rollout undo deployment/<name>","kubectl delete deployment/<name>","kubectl drain deployment/<name>","kubectl reset deployment/<name>"],0,"kubectl rollout undo can revert a Deployment to a previous revision.","Terminal","Medium","Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/","Deployments"],
+["A Pod cannot be scheduled because its node affinity requires a label absent from all nodes. What should you inspect?",["Node labels and the Pod affinity rules","Service ports","Container logs","ConfigMap keys"],0,"Node affinity and node labels determine which nodes satisfy the scheduling requirement.","Scenario","Hard","Scheduling","https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/","Assigning Pods to Nodes"],
+["A logging agent must run on every node automatically, including nodes added later. Which controller should manage it?",["DaemonSet","Deployment","Job","CronJob"],0,"A DaemonSet maintains a Pod on each eligible node.","Architecture","Easy","Workloads","https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/","DaemonSets"],
+["Which command shows CPU and memory usage for Pods when the Metrics API is available?",["kubectl top pods","kubectl describe pods","kubectl get metrics pods","kubectl resource pods"],0,"kubectl top pods displays current resource usage through the Metrics API.","Terminal","Medium","Observability","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_top/","kubectl top"]
+],
+CKAD:[
+["A container takes several minutes to initialize and is being killed by liveness checks during startup. What should you add?",["A startup probe","A Service","A ConfigMap","A NetworkPolicy"],0,"A startup probe allows a slow-starting container to initialize before liveness checks begin.","Scenario","Hard","Application Health","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/","Probes"],
+["An application needs an internal stable endpoint that routes to selected Pods. Which Service type is appropriate?",["ClusterIP","LoadBalancer","NodePort only","ExternalName only"],0,"ClusterIP is the default Service type and provides an internal stable endpoint.","Architecture","Easy","Networking","https://kubernetes.io/docs/concepts/services-networking/service/","Services"],
+["Which command opens an interactive shell in a running container?",["kubectl exec -it <pod> -- sh","kubectl logs -it <pod>","kubectl describe -it <pod>","kubectl shell <pod>"],0,"kubectl exec runs a command inside a container and can be used to open an interactive shell.","Terminal","Medium","Troubleshooting","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/","kubectl exec"],
+["A nightly task must create a Job at a scheduled time. Which Kubernetes resource should define the schedule?",["CronJob","Deployment","DaemonSet","Service"],0,"A CronJob creates Jobs according to a recurring schedule.","MCQ","Easy","Batch","https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/","CronJobs"]
+]};
 function enrichQuestions(){
   const typeByIndex=["MCQ","MCQ","MCQ","Architecture","MCQ","MCQ","Troubleshooting","Architecture","MCQ","MCQ","Scenario","MCQ","MCQ","MCQ","Architecture","Terminal","MCQ","MCQ","Terminal","Scenario"];
   const domainByIndex=["Compute","IAM","GKE","Infrastructure as Code","Artifact Management","Resource Management","GKE","Compute","Storage","Databases","Networking","Messaging","Networking","Security","GKE","Kubernetes","Operations","IAM","CI/CD","Networking"];
   const difficultyByIndex=["Easy","Medium","Easy","Medium","Easy","Easy","Medium","Medium","Easy","Easy","Medium","Easy","Easy","Medium","Medium","Easy","Easy","Medium","Easy","Medium"];
-  Object.entries(exams).forEach(([key,exam])=>{
+  Object.entries(moreQuestions).forEach(([key,items])=>exams[key].questions.push(...items));
+Object.entries(exams).forEach(([key,exam])=>{
     exam.questions=exam.questions.map((q,i)=>[...q,typeByIndex[i]||"Concept",difficultyByIndex[i]||"Medium",domainByIndex[i]||"General",refs[key][i][1],refs[key][i][0]]);
     exam.questions.push(...scenarioBank[key]);
   });
@@ -128,8 +148,12 @@ function shuffle(list){
   return a;
 }
 function createExam(key,avoid=[],difficulty="Any",type="Any"){
-  const bank=exams[key].questions.filter(q=>(difficulty==="Any"||q[5]===difficulty)&&(type==="Any"||q[4]===type)&&!avoid.includes(q[0]));
-  return shuffle(bank).slice(0,20);
+  const bank=exams[key].questions.filter(q=>!avoid.includes(q[0]));
+  const exact=shuffle(bank.filter(q=>(difficulty==="Any"||q[5]===difficulty)&&(type==="Any"||q[4]===type)));
+  const sameDifficulty=shuffle(bank.filter(q=>(difficulty==="Any"||q[5]===difficulty)&&!exact.includes(q)));
+  const sameType=shuffle(bank.filter(q=>(type==="Any"||q[4]===type)&&!exact.includes(q)&&!sameDifficulty.includes(q)));
+  const rest=shuffle(bank.filter(q=>!exact.includes(q)&&!sameDifficulty.includes(q)&&!sameType.includes(q)));
+  return [...exact,...sameDifficulty,...sameType,...rest].slice(0,20);
 }
 
 
@@ -138,7 +162,7 @@ const cards=document.getElementById("cards");
 
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function buildCards(){cards.innerHTML=Object.entries(exams).map(([k,e])=>`<article class="cert-card"><span class="cert-code">${k}</span><h2>${e.name}</h2><p>${e.questions.length}-question bank · choose difficulty and question style before starting.</p><div class="exam-settings"><label>Difficulty<select id="difficulty-${k}"><option>Any</option><option>Easy</option><option>Medium</option><option>Hard</option></select></label><label>Question style<select id="type-${k}"><option>Any</option><option>MCQ</option><option>Scenario</option><option>Terminal</option><option>Architecture</option></select></label></div><button class="start-button" onclick="start('${k}',document.getElementById('difficulty-${k}').value,document.getElementById('type-${k}').value)">Start practice →</button></article>`).join("")}
-function start(k,difficulty="Any",type="Any"){currentKey=k;const previous=lastExamQuestions;current={...exams[k],difficulty,type,questions:createExam(k,previous,difficulty,type)};if(!current.questions.length){alert("No questions currently match that combination. Try Any for difficulty or question style.");return}lastExamQuestions=current.questions.map(q=>q[0]);index=0;answers=Array(current.questions.length).fill(null);seconds=2700;cards.hidden=true;document.getElementById("practice").hidden=false;startTimer();render()}
+function start(k,difficulty="Any",type="Any"){currentKey=k;const previous=lastExamQuestions;current={...exams[k],difficulty,type,questions:createExam(k,previous,difficulty,type)};if(!current.questions.length){alert("No questions are available yet.");return}lastExamQuestions=current.questions.map(q=>q[0]);index=0;answers=Array(current.questions.length).fill(null);seconds=2700;cards.hidden=true;document.getElementById("practice").hidden=false;startTimer();render()}
 function startTimer(){clearInterval(timerId);updateTimer();timerId=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(timerId);finish()}},1000)}
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");const el=document.getElementById("timer");el.textContent=m+":"+s;el.classList.toggle("warning",seconds<=300)}
 function render(){const q=current.questions[index];document.getElementById("title").textContent=`${current.name} · ${current.difficulty} · ${current.type}`;document.getElementById("progress").textContent=`Question ${index+1} of ${current.questions.length}`;document.getElementById("question-type").textContent=`${q[4]} · ${q[5]} · ${q[6]}`;document.getElementById("score-live").textContent=`${answers.filter(x=>x!==null).length} answered`;document.getElementById("progress-bar").style.width=((index+1)/current.questions.length*100)+"%";document.getElementById("question").innerHTML=`<div class="question-text">${escapeHtml(q[0])}</div>`;document.getElementById("options").innerHTML=q[1].map((x,i)=>`<button class="option ${answers[index]===i?"selected":""}" onclick="choose(${i})"><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${escapeHtml(x)}</span></button>`).join("");document.getElementById("next-button").textContent=index===current.questions.length-1?"Submit exam →":"Next question →"}
