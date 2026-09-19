@@ -1,127 +1,103 @@
 # CertPulse
 
-**Free cloud certification practice — built for understanding, not just passing.**
+**Free, browser-based cloud certification practice with a local-first AI tutor and learner analytics.**
 
-CertPulse is a lightweight, browser-based mock exam and hands-on practice app for cloud and Kubernetes certification preparation. The goal is to combine exam-style questions with practical troubleshooting and manifest-writing exercises.
+Live app: https://harithasridhar1306.github.io/certpulse/
 
-## Current certifications
+## Why I built it
 
-- Google Cloud Associate Cloud Engineer (GCP ACE)
-- Certified Kubernetes Administrator (CKA)
-- Certified Kubernetes Application Developer (CKAD)
+Certification prep often tells you *what* the right answer is, but not whether you actually understand the concept.
+
+CertPulse is an experiment in building a lightweight learning loop:
+
+**Practice → Review → Understand → Track weak areas → Practice again**
+
+I started with a small static prototype and am evolving it toward a real learning platform while keeping the core experience free.
+
+## Current architecture
+
+```
+GitHub Pages
+    │
+    ├── index.html / style.css
+    │
+    └── app.js
+          │
+          ├── Exam engine
+          │    ├── random question selection
+          │    ├── difficulty + question-type filters
+          │    └── timed 20-question mocks
+          │
+          ├── Learner state
+          │    └── browser localStorage
+          │         ├── attempts
+          │         ├── scores
+          │         └── domain performance
+          │
+          └── Local AI Tutor
+               └── Transformers.js + SmolLM2
+                    ├── WebGPU when available
+                    └── WASM fallback
+```
+
+GitHub Pages is intentionally used as a static hosting layer; the current learner profile is stored locally in the browser, so no login or paid database is required.
 
 ## Features
 
-### Mock exam mode
+- GCP Associate Cloud Engineer practice
+- CKA practice
+- CKAD practice
+- 20-question timed mock exams
+- Easy / Medium / Hard filters
+- MCQ / Scenario / Terminal / Architecture filters
+- Kubernetes YAML playground with browser-side checks
+- Official documentation references
+- Review with explanations after an attempt
+- Local learner dashboard
+- Domain-level knowledge map
+- Recent-attempt history
+- Browser-local AI Tutor
+- AI output validation + deterministic fallback when the local model produces unusable output
+- No paid AI API required
 
-- 45-minute timed exam
-- 20 questions per attempt
-- One question at a time
-- Randomized question sets
-- Multiple-choice, scenario, terminal, and architecture-style questions
-- Difficulty selection: Easy, Medium, Hard, or Any
-- Question-style selection: MCQ, Scenario, Terminal, Architecture, or Any
-- Live progress and score tracking
-- Final score and complete answer review
-- Explanations for every question
-- Links to relevant official documentation
+## Engineering ideas I'm exploring
 
-### Terminal / manifest playground
+The current version is deliberately simple, but the next iterations are focused on making the system more dynamic:
 
-CKA and CKAD terminal questions are designed as hands-on exercises rather than ordinary multiple-choice questions.
+1. Move the question bank into versioned JSON/data sources.
+2. Add a normalized question schema with skills, domains and references.
+3. Build adaptive question selection from learner history.
+4. Add richer terminal validation with real YAML parsing.
+5. Add an optional backend for cross-device progress.
+6. Add an ingestion pipeline that can turn official documentation into reviewed question candidates.
+7. Containerize the API and deploy the platform on GKE.
+8. Use Terraform + GitHub Actions for repeatable infrastructure and delivery.
+9. Add observability around API latency, question generation and model usage.
 
-The flow is:
+## AI approach
 
-`Write YAML → Check manifest → Fix issues → Continue`
+The AI Tutor is intentionally **local-first**.
 
-Exercises include Kubernetes resources such as:
+Instead of sending a learner's answers to a paid hosted LLM API, the browser downloads a quantized instruction model and runs inference locally where supported.
 
-- Pods
-- Deployments
-- Services
-- ConfigMaps
-- Secrets
-- Jobs
-- CronJobs
-- NetworkPolicies
-- Readiness probes
+The model is treated as a *rewriter/tutor*, not the source of truth:
 
-The current checker performs browser-side validation against the exercise requirements and reports how many checks passed. It does not execute `kubectl` or create real Kubernetes resources.
-
-## Tech stack
-
-- HTML
-- CSS
-- Vanilla JavaScript
-- GitHub Pages
-- GitHub Actions
-
-The current version is intentionally static and does not require a paid backend or API key.
-
-## Run locally
-
-Clone the repository and open `index.html` in a browser, or serve the repository with any static web server.
-
-```bash
-git clone https://github.com/Harithasridhar1306/certpulse.git
-cd certpulse
+```
+Verified explanation
+       ↓
+Question + learner answer
+       ↓
+Local model
+       ↓
+Output validation
+       ↓
+Usable AI explanation
+       │
+       └── invalid output → verified deterministic fallback
 ```
 
-Then open `index.html`.
+This was important because small browser models can produce repetitive or low-quality output. The product therefore does not blindly display model output.
 
-## Project structure
+## Disclaimer
 
-```text
-certpulse/
-├── index.html
-├── style.css
-├── app.js
-├── .nojekyll
-├── README.md
-└── .github/
-    └── workflows/
-        └── pages.yml
-```
-
-## Deployment
-
-CertPulse is deployed as a static site through GitHub Pages.
-
-Every push to `main` triggers the GitHub Actions workflow in `.github/workflows/pages.yml`, which uploads the repository as a Pages artifact and deploys it.
-
-## Roadmap
-
-- Expand question banks across every certification, difficulty, and question style
-- Add more scenario-based questions
-- Expand the terminal playground with more Kubernetes troubleshooting exercises
-- Parse YAML and provide more structured validation feedback
-- Add kubectl-style validation and more realistic Kubernetes checks
-- Add hints and progressive guidance for hands-on exercises
-- AI-generated question sets
-- User accounts and test history
-- Weak-area analytics
-- More cloud certifications
-
-## Learning philosophy
-
-CertPulse is intended to test **understanding and practical reasoning**, not memorization.
-
-For hands-on questions, the aim is to make the learner:
-
-1. Read a requirement.
-2. Translate it into a Kubernetes or cloud resource.
-3. Write the configuration.
-4. Validate it.
-5. Understand what is wrong when validation fails.
-
-## Important note
-
-CertPulse uses original practice questions and is **not an exam-dump repository**. It is an independent learning project and is not affiliated with Google, Kubernetes, CNCF, or any certification provider.
-
-## Live site
-
-https://harithasridhar1306.github.io/certpulse/
-
-## Repository
-
-https://github.com/Harithasridhar1306/certpulse
+CertPulse is an independent learning project and is not affiliated with Google Cloud, CNCF, Linux Foundation or any certification provider.
