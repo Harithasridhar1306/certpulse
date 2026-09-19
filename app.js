@@ -191,33 +191,68 @@ let aiGenerator=null,aiLoading=false;
 async function getAITutor(){
   if(aiGenerator)return aiGenerator;
   if(aiLoading)return null;
-  aiLoading=true; showAI("Loading the free local AI model in your browser… The first load can take a little while.","loading");
+  aiLoading=true;
+  showAI("Preparing AI Tutor…","loading");
   try{
-    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2");
-    mod.env.allowLocalModels=false; mod.env.useBrowserCache=true;
-    try{aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct-ONNX",{device:"webgpu"})}
-    catch(e){aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct-ONNX",{device:"wasm"})}
+    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1");
+    mod.env.allowLocalModels=false;
+    mod.env.useBrowserCache=true;
+    const options={
+      dtype:"q4f16",
+      progress_callback:(p)=>{
+        if(p&&p.status==="progress"&&typeof p.progress==="number"){
+          showAI("Downloading AI model… "+Math.round(p.progress)+"%","loading");
+        }
+      }
+    };
+    if("gpu" in navigator){
+      try{
+        aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"webgpu"});
+      }catch(e){
+        console.warn("WebGPU unavailable, using WASM:",e);
+        aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"wasm"});
+      }
+    }else{
+      aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"wasm"});
+    }
+    showAI("AI Tutor ready ✓","good");
     return aiGenerator;
-  }catch(err){console.error(err);showAI("The free local AI model could not load. Try Chrome/Edge with hardware acceleration enabled.","bad");return null}
-  finally{aiLoading=false}
+  }catch(err){
+    console.error("AI Tutor load failed:",err);
+    showAI("AI Tutor could not load. Check your connection, then refresh and try again.","bad");
+    return null;
+  }finally{aiLoading=false}
 }
 async function askAITutor(){
   const q=current.questions[index],selected=answers[index];
   if(selected===null){showAI("Choose an answer first, then ask the AI tutor.","bad");return}
-  const button=document.getElementById("ai-button");if(button){button.disabled=true;button.textContent="AI is thinking…"}
-  const gen=await getAITutor();if(!gen){if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}return}
+  const button=document.getElementById("ai-button");
+  if(button){button.disabled=true;button.textContent="AI is thinking…"}
+  const gen=await getAITutor();
+  if(!gen){if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}return}
   const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
-  const prompt="You are a concise cloud certification tutor. Certification: "+current.name+". Question: "+q[0]+". Learner answer: "+selectedText+". Correct answer: "+correctText+". Explain why the answer is right or wrong in simple technical language. Give one practical tip. Do not claim access to a live cluster. Keep it under 140 words.";
+  const messages=[
+    {role:"system",content:"You are a concise cloud certification tutor. Explain technical concepts accurately and simply. Do not claim access to a live cluster."},
+    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nExplain why the answer is right or wrong, then give one practical tip. Keep it under 140 words."}
+  ];
   try{
-    const out=await gen(prompt,{max_new_tokens:180,temperature:.35,do_sample:true});
-    let text="";if(Array.isArray(out)&&out[0]){const g=out[0].generated_text;text=typeof g==="string"?g:(Array.isArray(g)?g[g.length-1]?.content||"":String(g||""))}
+    const out=await gen(messages,{max_new_tokens:180,temperature:.35,do_sample:true});
+    let text="";
+    if(Array.isArray(out)&&out[0]){
+      const g=out[0].generated_text;
+      if(Array.isArray(g)) text=g[g.length-1]?.content||"";
+      else text=String(g||"");
+    }
     showAI(text.trim()||"The AI tutor did not return a usable explanation. Try again.","good");
-  }catch(err){console.error(err);showAI("The local AI model hit an error. You can continue with the built-in explanation and official reference.","bad")}
-  finally{if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}}
+  }catch(err){
+    console.error("AI Tutor inference failed:",err);
+    showAI("The local AI model hit an error. You can continue with the built-in explanation and official reference.","bad");
+  }finally{
+    if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}
+  }
 }
 function showAI(msg,kind){const el=document.getElementById("ai-tutor");if(el){el.className="ai-tutor "+kind;el.innerHTML="<strong>✦ AI Tutor</strong><p>"+escapeHtml(msg)+"</p>"}}
-
 function choose(i){answers[index]=i;render()}
 function next(){if(answers[index]===null){alert("Please choose an answer first.");return}if(index<current.questions.length-1){index++;render()}else finish()}
 function finish(){clearInterval(timerId);const correct=answers.reduce((n,a,i)=>n+(a===current.questions[i][2]?1:0),0);const pct=Math.round(correct/current.questions.length*100);document.getElementById("progress-bar").style.width="100%";document.getElementById("score-live").textContent=`${correct}/${current.questions.length} correct`;document.getElementById("question").innerHTML=`<div class="result"><div class="eyebrow">MOCK EXAM COMPLETE</div><div class="result-score">${pct}%</div><p>You got <strong>${correct} of ${current.questions.length}</strong> questions correct.</p></div>`;document.getElementById("options").innerHTML=`<div class="review">${current.questions.map((q,i)=>{const ok=answers[i]===q[2],ref=[q[8],q[7]];return `<div class="review-item"><strong>Q${i+1}. ${escapeHtml(q[0])}</strong><p class="${ok?"correct":"incorrect"}">${ok?"✓ Correct":"✗ Incorrect"} · Your answer: ${answers[i]===null?"Not answered":escapeHtml(q[1][answers[i]])}</p><p><strong>Correct answer:</strong> ${escapeHtml(q[1][q[2]])}</p><div class="answer-explanation"><strong>Why this answer?</strong><p>${escapeHtml(q[3])}</p></div><div class="question-reference"><strong>📚 Reference</strong><p><a href="${ref[1]}" target="_blank" rel="noopener noreferrer">${escapeHtml(ref[0])} ↗</a></p></div></div>`}).join("")}</div>`;document.getElementById("next-button").textContent="Retake exam";document.getElementById("next-button").onclick=()=>start(currentKey,current.difficulty,current.type)}
