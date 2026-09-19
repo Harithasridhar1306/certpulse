@@ -11,7 +11,12 @@
           "Cloud DNS"
         ],
         0,
-        "Cloud Run runs containers as a managed service without requiring you to manage a Kubernetes cluster."
+        "Cloud Run runs containers as a managed service without requiring you to manage a Kubernetes cluster.",
+        "MCQ",
+        "Easy",
+        "Compute",
+        "https://cloud.google.com/run/docs",
+        "Cloud Run documentation"
       ],
       [
         "Which IAM approach follows the principle of least privilege?",
@@ -22,7 +27,12 @@
           "Make the resource public"
         ],
         0,
-        "Least privilege means granting only the permissions required to perform the task."
+        "Least privilege means granting only the permissions required to perform the task.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://cloud.google.com/iam/docs/overview",
+        "IAM overview"
       ],
       [
         "In GKE, which object gives a stable network endpoint for a group of Pods?",
@@ -33,7 +43,12 @@
           "Namespace"
         ],
         0,
-        "A Kubernetes Service provides a stable virtual IP and DNS name for a selected set of Pods."
+        "A Kubernetes Service provides a stable virtual IP and DNS name for a selected set of Pods.",
+        "MCQ",
+        "Easy",
+        "GKE",
+        "https://cloud.google.com/kubernetes-engine/docs/concepts/service",
+        "GKE Services"
       ],
       [
         "What is the main purpose of a Terraform module?",
@@ -44,7 +59,12 @@
           "Create Kubernetes Pods directly"
         ],
         0,
-        "Terraform modules package reusable infrastructure configuration so it can be used consistently across environments."
+        "Terraform modules package reusable infrastructure configuration so it can be used consistently across environments.",
+        "Architecture",
+        "Medium",
+        "Infrastructure as Code",
+        "https://developer.hashicorp.com/terraform/language/modules",
+        "Terraform modules"
       ],
       [
         "Which Google Cloud service is designed for storing and managing container images and other artifacts?",
@@ -55,7 +75,12 @@
           "Cloud Scheduler"
         ],
         0,
-        "Artifact Registry is Google's managed service for storing and managing packages and container images."
+        "Artifact Registry is Google's managed service for storing and managing packages and container images.",
+        "MCQ",
+        "Easy",
+        "Artifact Management",
+        "https://cloud.google.com/artifact-registry/docs",
+        "Artifact Registry documentation"
       ],
       [
         "Which GCP resource is used to logically group resources for access control and billing?",
@@ -66,7 +91,12 @@
           "Firewall rule"
         ],
         0,
-        "Projects are the fundamental organizing boundary for many Google Cloud resources, IAM and billing."
+        "Projects are the fundamental organizing boundary for many Google Cloud resources, IAM and billing.",
+        "MCQ",
+        "Easy",
+        "Resource Management",
+        "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy",
+        "Google Cloud resource hierarchy"
       ],
       [
         "Which GKE component runs on each node and manages containers?",
@@ -77,7 +107,12 @@
           "Cloud Scheduler"
         ],
         0,
-        "The kubelet is the Kubernetes node agent that ensures containers described by Pods are running."
+        "The kubelet is the Kubernetes node agent that ensures containers described by Pods are running.",
+        "Troubleshooting",
+        "Medium",
+        "GKE",
+        "https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture",
+        "GKE architecture"
       ],
       [
         "What does a regional managed instance group provide?",
@@ -88,7 +123,12 @@
           "A Cloud Storage bucket"
         ],
         0,
-        "Regional managed instance groups distribute VMs across multiple zones in a region for higher availability."
+        "Regional managed instance groups distribute VMs across multiple zones in a region for higher availability.",
+        "Architecture",
+        "Medium",
+        "Compute",
+        "https://cloud.google.com/compute/docs/instance-groups",
+        "Managed instance groups overview"
       ],
       [
         "Which service provides object storage in Google Cloud?",
@@ -99,7 +139,12 @@
           "Memorystore"
         ],
         0,
-        "Cloud Storage is Google's managed object storage service."
+        "Cloud Storage is Google's managed object storage service.",
+        "MCQ",
+        "Easy",
+        "Storage",
+        "https://cloud.google.com/storage/docs",
+        "Cloud Storage documentation"
       ],
       [
         "Which GCP service is a managed relational database?",
@@ -110,7 +155,12 @@
           "Cloud CDN"
         ],
         0,
-        "Cloud SQL provides managed MySQL, PostgreSQL and SQL Server databases."
+        "Cloud SQL provides managed MySQL, PostgreSQL and SQL Server databases.",
+        "MCQ",
+        "Easy",
+        "Databases",
+        "https://cloud.google.com/sql/docs",
+        "Cloud SQL documentation"
       ],
       [
         "What does Cloud NAT primarily allow?",
@@ -121,7 +171,12 @@
           "Buckets to become public"
         ],
         0,
-        "Cloud NAT enables resources without external IP addresses to make outbound connections to the internet."
+        "Cloud NAT enables resources without external IP addresses to make outbound connections to the internet.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://cloud.google.com/nat/docs/overview",
+        "Cloud NAT documentation"
       ],
       [
         "Which service is used for asynchronous messaging between applications?",
@@ -132,7 +187,12 @@
           "Cloud Storage"
         ],
         0,
-        "Pub/Sub is a managed messaging service for asynchronous, decoupled communication."
+        "Pub/Sub is a managed messaging service for asynchronous, decoupled communication.",
+        "MCQ",
+        "Easy",
+        "Messaging",
+        "https://cloud.google.com/pubsub/docs/overview",
+        "Pub/Sub documentation"
       ],
       [
         "What is a VPC subnet associated with?",
@@ -143,7 +203,12 @@
           "A billing account"
         ],
         0,
-        "Google Cloud VPC subnets are regional resources."
+        "Google Cloud VPC subnets are regional resources.",
+        "MCQ",
+        "Easy",
+        "Networking",
+        "https://cloud.google.com/vpc/docs/vpc#vpc_networks_and_subnets",
+        "VPC networks and subnets"
       ],
       [
         "Which service helps protect applications from Layer 7 attacks and DDoS threats?",
@@ -154,7 +219,12 @@
           "Cloud Scheduler"
         ],
         0,
-        "Cloud Armor provides application-layer protection and DDoS defense for supported Google Cloud workloads."
+        "Cloud Armor provides application-layer protection and DDoS defense for supported Google Cloud workloads.",
+        "MCQ",
+        "Medium",
+        "Security",
+        "https://cloud.google.com/armor/docs",
+        "Cloud Armor documentation"
       ],
       [
         "What does a GKE Deployment primarily manage?",
@@ -165,7 +235,12 @@
           "IAM policies"
         ],
         0,
-        "A Deployment manages ReplicaSets and supports declarative updates and rollouts for Pods."
+        "A Deployment manages ReplicaSets and supports declarative updates and rollouts for Pods.",
+        "Architecture",
+        "Medium",
+        "GKE",
+        "https://cloud.google.com/kubernetes-engine/docs/concepts/deployment",
+        "GKE Deployments"
       ],
       [
         "Which tool is commonly used to interact with Kubernetes clusters from a terminal?",
@@ -176,7 +251,12 @@
           "gsutil only"
         ],
         0,
-        "kubectl is the standard Kubernetes command-line client."
+        "kubectl is the standard Kubernetes command-line client.",
+        "Terminal",
+        "Easy",
+        "Kubernetes",
+        "https://kubernetes.io/docs/reference/kubectl/",
+        "kubectl reference"
       ],
       [
         "Which Google Cloud service provides centralized logging?",
@@ -187,7 +267,12 @@
           "Cloud Deploy"
         ],
         0,
-        "Cloud Logging collects and lets you query logs from Google Cloud and supported applications."
+        "Cloud Logging collects and lets you query logs from Google Cloud and supported applications.",
+        "MCQ",
+        "Easy",
+        "Operations",
+        "https://cloud.google.com/logging/docs",
+        "Cloud Logging documentation"
       ],
       [
         "What is the purpose of a GCP service account?",
@@ -198,7 +283,12 @@
           "Create a billing account"
         ],
         0,
-        "Service accounts are identities intended for workloads and applications rather than human users."
+        "Service accounts are identities intended for workloads and applications rather than human users.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://cloud.google.com/iam/docs/service-account-overview",
+        "Service accounts overview"
       ],
       [
         "Which service builds container images and runs CI/CD build steps?",
@@ -209,7 +299,12 @@
           "Cloud NAT"
         ],
         0,
-        "Cloud Build executes build steps and can build container images and other artifacts."
+        "Cloud Build executes build steps and can build container images and other artifacts.",
+        "Terminal",
+        "Easy",
+        "CI/CD",
+        "https://cloud.google.com/build/docs/overview",
+        "Cloud Build documentation"
       ],
       [
         "What does a firewall rule in a VPC control?",
@@ -220,7 +315,204 @@
           "Cloud billing exports"
         ],
         0,
-        "VPC firewall rules control allowed or denied network traffic for applicable VM interfaces."
+        "VPC firewall rules control allowed or denied network traffic for applicable VM interfaces.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://cloud.google.com/firewall/docs/firewalls",
+        "VPC firewall rules"
+      ],
+      [
+        "A team wants private VMs to reach Google APIs without assigning external IP addresses. Which feature should they enable on the subnet?",
+        [
+          "Private Google Access",
+          "Cloud CDN",
+          "Cloud Armor",
+          "External passthrough Load Balancer"
+        ],
+        0,
+        "Private Google Access enables VMs without external IP addresses to reach Google APIs and services.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://cloud.google.com/vpc/docs/private-google-access",
+        "Private Google Access"
+      ],
+      [
+        "A production API needs automatic scaling and should run from a container image without managing servers. Which service fits?",
+        [
+          "Cloud Run",
+          "Cloud Storage",
+          "Cloud SQL",
+          "BigQuery"
+        ],
+        0,
+        "Cloud Run provides a managed environment for containerized applications with automatic scaling.",
+        "Architecture",
+        "Easy",
+        "Compute",
+        "https://cloud.google.com/run/docs",
+        "Cloud Run"
+      ],
+      [
+        "A developer needs to determine why an IAM request is denied. Which area should be checked first?",
+        [
+          "The principal's granted roles and applicable resource policies",
+          "The VM disk size",
+          "The subnet's region",
+          "The Cloud Storage class"
+        ],
+        0,
+        "IAM authorization depends on the permissions granted to the principal and applicable policies.",
+        "Troubleshooting",
+        "Medium",
+        "IAM",
+        "https://cloud.google.com/iam/docs/overview",
+        "IAM overview"
+      ],
+      [
+        "Which command displays the currently configured Google Cloud project?",
+        [
+          "gcloud config get-value project",
+          "gcloud project current",
+          "gcloud show-project",
+          "gcloud iam project"
+        ],
+        0,
+        "The gcloud config get-value project command displays the active project configuration.",
+        "Terminal",
+        "Easy",
+        "CLI",
+        "https://cloud.google.com/sdk/gcloud/reference/config/get-value",
+        "gcloud config get-value"
+      ],
+      [
+        "A GKE workload has no external IP address but must download packages from the internet. Security does not want inbound internet access to the workload. What should you configure?",
+        [
+          "Cloud NAT",
+          "External LoadBalancer",
+          "Public IP on every Pod",
+          "Cloud DNS"
+        ],
+        0,
+        "Cloud NAT provides outbound internet access for resources without external IP addresses without making those resources directly reachable from the internet.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://cloud.google.com/nat/docs/overview",
+        "Cloud NAT documentation"
+      ],
+      [
+        "A team wants to run a stateless HTTP API and scale it automatically without managing Kubernetes nodes. Which service best fits?",
+        [
+          "Cloud Run",
+          "Compute Engine unmanaged VM",
+          "Cloud Storage",
+          "Cloud SQL"
+        ],
+        0,
+        "Cloud Run runs containers as a managed service and handles infrastructure and scaling for the application.",
+        "Scenario",
+        "Easy",
+        "Compute",
+        "https://cloud.google.com/run/docs",
+        "Cloud Run documentation"
+      ],
+      [
+        "A developer needs to deploy an application but should not be able to change IAM policies or billing settings. Which access approach should you use?",
+        [
+          "Grant only the roles required for the application task",
+          "Grant Project Owner",
+          "Grant Billing Admin",
+          "Share a service account key"
+        ],
+        0,
+        "Least privilege means granting only the permissions needed for the task rather than broad administrative roles.",
+        "Scenario",
+        "Medium",
+        "IAM",
+        "https://cloud.google.com/iam/docs/overview",
+        "IAM overview"
+      ],
+      [
+        "A production application runs across multiple GKE Pods. Users need one stable endpoint even when individual Pods are recreated. What should you create?",
+        [
+          "A Kubernetes Service",
+          "A ConfigMap",
+          "A Secret",
+          "A Job"
+        ],
+        0,
+        "A Service provides a stable virtual endpoint and selects the Pods that receive traffic.",
+        "Scenario",
+        "Easy",
+        "GKE",
+        "https://cloud.google.com/kubernetes-engine/docs/concepts/service",
+        "GKE Services"
+      ],
+      [
+        "A company needs to store container images centrally and use them from its CI/CD pipelines. Which Google Cloud service should it use?",
+        [
+          "Artifact Registry",
+          "Cloud Storage only",
+          "Cloud DNS",
+          "Cloud Scheduler"
+        ],
+        0,
+        "Artifact Registry is designed to store and manage container images and other software artifacts.",
+        "Scenario",
+        "Easy",
+        "Artifact Management",
+        "https://cloud.google.com/artifact-registry/docs",
+        "Artifact Registry documentation"
+      ],
+      [
+        "A regional application must remain available if one zone has an outage. Which VM design provides distribution across multiple zones?",
+        [
+          "Regional managed instance group",
+          "Single-zone unmanaged VM",
+          "One Cloud Storage bucket",
+          "One GKE Pod"
+        ],
+        0,
+        "Regional managed instance groups distribute VM instances across multiple zones within a region.",
+        "Scenario",
+        "Medium",
+        "Compute",
+        "https://cloud.google.com/compute/docs/instance-groups",
+        "Managed instance groups overview"
+      ],
+      [
+        "An application needs asynchronous communication so producers do not have to wait for consumers to process messages. Which service is appropriate?",
+        [
+          "Pub/Sub",
+          "Cloud DNS",
+          "Cloud SQL",
+          "Cloud Armor"
+        ],
+        0,
+        "Pub/Sub provides asynchronous messaging and decouples publishers from subscribers.",
+        "Scenario",
+        "Easy",
+        "Messaging",
+        "https://cloud.google.com/pubsub/docs/overview",
+        "Pub/Sub documentation"
+      ],
+      [
+        "A team needs a managed relational database for an application using PostgreSQL and does not want to manage database infrastructure. Which service fits?",
+        [
+          "Cloud SQL",
+          "Cloud Storage",
+          "Pub/Sub",
+          "Filestore"
+        ],
+        0,
+        "Cloud SQL is a managed relational database service supporting PostgreSQL, MySQL and SQL Server.",
+        "Scenario",
+        "Easy",
+        "Databases",
+        "https://cloud.google.com/sql/docs",
+        "Cloud SQL documentation"
       ]
     ]
   },
@@ -236,7 +528,12 @@
           "kubectl pods"
         ],
         0,
-        "The -A/--all-namespaces flag requests resources across all namespaces."
+        "The -A/--all-namespaces flag requests resources across all namespaces.",
+        "MCQ",
+        "Easy",
+        "Compute",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/",
+        "kubectl get reference"
       ],
       [
         "Which Kubernetes object provides stable networking for a set of Pods?",
@@ -247,7 +544,12 @@
           "Job"
         ],
         0,
-        "A Service exposes a stable virtual endpoint for selected Pods."
+        "A Service exposes a stable virtual endpoint for selected Pods.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Kubernetes Services"
       ],
       [
         "Which component stores Kubernetes cluster state?",
@@ -258,7 +560,12 @@
           "containerd"
         ],
         0,
-        "etcd is the distributed key-value store used by Kubernetes for cluster state."
+        "etcd is the distributed key-value store used by Kubernetes for cluster state.",
+        "MCQ",
+        "Easy",
+        "GKE",
+        "https://etcd.io/docs/",
+        "etcd documentation"
       ],
       [
         "What is a Kubernetes namespace mainly used for?",
@@ -269,7 +576,12 @@
           "Creating cloud accounts"
         ],
         0,
-        "Namespaces provide a scope for names and a way to organize and isolate resources within a cluster."
+        "Namespaces provide a scope for names and a way to organize and isolate resources within a cluster.",
+        "Architecture",
+        "Medium",
+        "Infrastructure as Code",
+        "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+        "Namespaces"
       ],
       [
         "Which command shows detailed information and events for a Pod?",
@@ -280,7 +592,12 @@
           "kubectl debug pod <name>"
         ],
         0,
-        "kubectl describe displays detailed resource information and recent events."
+        "kubectl describe displays detailed resource information and recent events.",
+        "MCQ",
+        "Easy",
+        "Artifact Management",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/",
+        "kubectl describe reference"
       ],
       [
         "Which object maintains a requested number of identical Pods?",
@@ -291,7 +608,12 @@
           "Ingress"
         ],
         0,
-        "A Deployment manages ReplicaSets to maintain the desired number of Pod replicas."
+        "A Deployment manages ReplicaSets to maintain the desired number of Pod replicas.",
+        "MCQ",
+        "Easy",
+        "Resource Management",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+        "Deployments"
       ],
       [
         "Which command displays nodes in a cluster?",
@@ -302,7 +624,12 @@
           "kubectl show nodes"
         ],
         0,
-        "kubectl get nodes lists the nodes registered with the cluster."
+        "kubectl get nodes lists the nodes registered with the cluster.",
+        "Troubleshooting",
+        "Medium",
+        "GKE",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/",
+        "kubectl get nodes"
       ],
       [
         "What does a readiness probe affect?",
@@ -313,7 +640,12 @@
           "Whether a Secret is encrypted"
         ],
         0,
-        "Readiness determines whether a container is ready to receive traffic from Services."
+        "Readiness determines whether a container is ready to receive traffic from Services.",
+        "Architecture",
+        "Medium",
+        "Compute",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Liveness, readiness and startup probes"
       ],
       [
         "Which component assigns Pods to nodes?",
@@ -324,7 +656,12 @@
           "CoreDNS"
         ],
         0,
-        "The kube-scheduler selects suitable nodes for unscheduled Pods."
+        "The kube-scheduler selects suitable nodes for unscheduled Pods.",
+        "MCQ",
+        "Easy",
+        "Storage",
+        "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/",
+        "kube-scheduler"
       ],
       [
         "What does kube-proxy primarily help implement?",
@@ -335,7 +672,12 @@
           "API authentication"
         ],
         0,
-        "kube-proxy maintains network rules that implement Service connectivity on nodes."
+        "kube-proxy maintains network rules that implement Service connectivity on nodes.",
+        "MCQ",
+        "Easy",
+        "Databases",
+        "https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/",
+        "kube-proxy"
       ],
       [
         "Which resource stores non-sensitive configuration?",
@@ -346,7 +688,12 @@
           "Ingress"
         ],
         0,
-        "ConfigMaps store configuration data that is not intended to be confidential."
+        "ConfigMaps store configuration data that is not intended to be confidential.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/configuration/configmap/",
+        "ConfigMaps"
       ],
       [
         "Which command shows the current cluster contexts?",
@@ -357,7 +704,12 @@
           "kubectl show config"
         ],
         0,
-        "kubectl config get-contexts lists contexts in the kubeconfig."
+        "kubectl config get-contexts lists contexts in the kubeconfig.",
+        "MCQ",
+        "Easy",
+        "Messaging",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_config/",
+        "kubectl config reference"
       ],
       [
         "What is a DaemonSet designed to do?",
@@ -368,7 +720,12 @@
           "Store cluster state"
         ],
         0,
-        "DaemonSets ensure a copy of a Pod runs on nodes matching their scheduling rules."
+        "DaemonSets ensure a copy of a Pod runs on nodes matching their scheduling rules.",
+        "MCQ",
+        "Easy",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/",
+        "DaemonSets"
       ],
       [
         "What is a PersistentVolume (PV)?",
@@ -379,7 +736,12 @@
           "A container image"
         ],
         0,
-        "A PersistentVolume represents storage available to the cluster."
+        "A PersistentVolume represents storage available to the cluster.",
+        "MCQ",
+        "Medium",
+        "Security",
+        "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
+        "PersistentVolumes"
       ],
       [
         "What does a PersistentVolumeClaim request?",
@@ -390,7 +752,12 @@
           "A container image"
         ],
         0,
-        "A PVC is a request for storage by a workload."
+        "A PVC is a request for storage by a workload.",
+        "Architecture",
+        "Medium",
+        "GKE",
+        "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
+        "PersistentVolumeClaims"
       ],
       [
         "Which object controls allowed network traffic between Pods?",
@@ -401,7 +768,12 @@
           "ServiceAccount"
         ],
         0,
-        "NetworkPolicy defines rules for allowed ingress and egress traffic to selected Pods."
+        "NetworkPolicy defines rules for allowed ingress and egress traffic to selected Pods.",
+        "Terminal",
+        "Easy",
+        "Kubernetes",
+        "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+        "NetworkPolicies"
       ],
       [
         "Which command applies a manifest declaratively?",
@@ -412,7 +784,12 @@
           "kubectl manifest file.yaml"
         ],
         0,
-        "kubectl apply creates or updates resources from a manifest declaratively."
+        "kubectl apply creates or updates resources from a manifest declaratively.",
+        "MCQ",
+        "Easy",
+        "Operations",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_apply/",
+        "kubectl apply reference"
       ],
       [
         "Which Kubernetes object stores sensitive configuration data?",
@@ -423,7 +800,12 @@
           "Namespace"
         ],
         0,
-        "Secrets are designed to hold sensitive data such as credentials and tokens."
+        "Secrets are designed to hold sensitive data such as credentials and tokens.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://kubernetes.io/docs/concepts/configuration/secret/",
+        "Secrets"
       ],
       [
         "What does a Service of type LoadBalancer generally provide?",
@@ -434,7 +816,12 @@
           "A CronJob"
         ],
         0,
-        "LoadBalancer Services request external load-balancing integration from the underlying platform."
+        "LoadBalancer Services request external load-balancing integration from the underlying platform.",
+        "Terminal",
+        "Easy",
+        "CI/CD",
+        "https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer",
+        "Service type LoadBalancer"
       ],
       [
         "Which command is useful for viewing recent cluster events?",
@@ -445,7 +832,308 @@
           "kubectl list-events"
         ],
         0,
-        "kubectl get events displays Event resources, which are useful for troubleshooting."
+        "kubectl get events displays Event resources, which are useful for troubleshooting.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_events/",
+        "Kubernetes Events"
+      ],
+      [
+        "A Deployment rollout is broken and the previous version was known to work. Which command can roll the Deployment back?",
+        [
+          "kubectl rollout undo deployment/<name>",
+          "kubectl delete deployment/<name>",
+          "kubectl drain deployment/<name>",
+          "kubectl reset deployment/<name>"
+        ],
+        0,
+        "kubectl rollout undo can revert a Deployment to a previous revision.",
+        "Terminal",
+        "Medium",
+        "Deployments",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+        "Deployments"
+      ],
+      [
+        "A Pod cannot be scheduled because its node affinity requires a label absent from all nodes. What should you inspect?",
+        [
+          "Node labels and the Pod affinity rules",
+          "Service ports",
+          "Container logs",
+          "ConfigMap keys"
+        ],
+        0,
+        "Node affinity and node labels determine which nodes satisfy the scheduling requirement.",
+        "Scenario",
+        "Hard",
+        "Scheduling",
+        "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
+        "Assigning Pods to Nodes"
+      ],
+      [
+        "A logging agent must run on every node automatically, including nodes added later. Which controller should manage it?",
+        [
+          "DaemonSet",
+          "Deployment",
+          "Job",
+          "CronJob"
+        ],
+        0,
+        "A DaemonSet maintains a Pod on each eligible node.",
+        "Architecture",
+        "Easy",
+        "Workloads",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/",
+        "DaemonSets"
+      ],
+      [
+        "Which command shows CPU and memory usage for Pods when the Metrics API is available?",
+        [
+          "kubectl top pods",
+          "kubectl describe pods",
+          "kubectl get metrics pods",
+          "kubectl resource pods"
+        ],
+        0,
+        "kubectl top pods displays current resource usage through the Metrics API.",
+        "Terminal",
+        "Medium",
+        "Observability",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_top/",
+        "kubectl top"
+      ],
+      [
+        "A Pod remains Pending and the cluster has available nodes, but the Pod has a nodeSelector that matches no node labels. What should you investigate first?",
+        [
+          "Node labels and the Pod's scheduling constraints",
+          "Container image tags",
+          "Service selectors",
+          "CoreDNS records"
+        ],
+        0,
+        "A nodeSelector requires a matching node label. If no node satisfies it, the scheduler cannot place the Pod.",
+        "Scenario",
+        "Medium",
+        "Scheduling",
+        "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/",
+        "Assigning Pods to Nodes"
+      ],
+      [
+        "A Service exists but sends no traffic to a set of Pods. The Pods are Running. What should you check first?",
+        [
+          "Whether the Service selector matches the Pod labels",
+          "Whether etcd has been deleted",
+          "Whether the Pods have public IPs",
+          "Whether the node has a LoadBalancer"
+        ],
+        0,
+        "A Service uses its selector to identify endpoint Pods, so mismatched labels are a common cause of no endpoints.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services"
+      ],
+      [
+        "A Pod starts successfully but is repeatedly restarted because its application takes several minutes to initialize. Which probe can protect it during startup?",
+        [
+          "Startup probe",
+          "Readiness probe only",
+          "Service probe",
+          "Node probe"
+        ],
+        0,
+        "A startup probe gives a slow-starting container time to initialize before liveness checking takes effect.",
+        "Scenario",
+        "Medium",
+        "Workloads",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Liveness, readiness and startup probes"
+      ],
+      [
+        "An administrator needs to understand why a Pod was not scheduled and wants events associated with the Pod. Which command is most useful?",
+        [
+          "kubectl describe pod <name>",
+          "kubectl get service <name>",
+          "kubectl logs <name>",
+          "kubectl get configmap"
+        ],
+        0,
+        "kubectl describe shows detailed resource information and recent events, which are useful for scheduling troubleshooting.",
+        "Scenario",
+        "Easy",
+        "Troubleshooting",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/",
+        "kubectl describe reference"
+      ],
+      [
+        "A cluster administrator needs to run a logging agent on every eligible node. Which controller is designed for this?",
+        [
+          "DaemonSet",
+          "Deployment",
+          "Job",
+          "CronJob"
+        ],
+        0,
+        "A DaemonSet ensures a copy of a Pod runs on each node that matches its scheduling rules.",
+        "Scenario",
+        "Easy",
+        "Workloads",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/",
+        "DaemonSets"
+      ],
+      [
+        "A workload needs persistent storage and should request 20Gi with a particular access mode. Which Kubernetes object should the workload create?",
+        [
+          "PersistentVolumeClaim",
+          "PersistentVolume directly",
+          "ConfigMap",
+          "Service"
+        ],
+        0,
+        "A PersistentVolumeClaim expresses a workload's storage requirements and can bind to suitable storage.",
+        "Scenario",
+        "Medium",
+        "Storage",
+        "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
+        "PersistentVolumes and claims"
+      ],
+      [
+        "An administrator needs to allow traffic between selected Pods only on specific ports. Which resource provides this control?",
+        [
+          "NetworkPolicy",
+          "ConfigMap",
+          "Secret",
+          "ServiceAccount"
+        ],
+        0,
+        "NetworkPolicy defines allowed ingress and egress traffic for selected Pods.",
+        "Scenario",
+        "Medium",
+        "Security",
+        "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+        "NetworkPolicies"
+      ],
+      [
+        "A team wants a workload to run once and retry until it completes successfully. Which resource should they use?",
+        [
+          "Job",
+          "Deployment",
+          "DaemonSet",
+          "Service"
+        ],
+        0,
+        "A Job creates Pods and tracks them until the required successful completion is reached.",
+        "Scenario",
+        "Easy",
+        "Workloads",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+        "Jobs"
+      ],
+      [
+        "Write a Pod manifest named api using nginx:1.27 with containerPort 80. Write the YAML in the playground and check it.",
+        [],
+        0,
+        "The manifest needs a Pod named api, nginx:1.27, and containerPort 80.",
+        "Terminal",
+        "Easy",
+        "Pods",
+        "https://kubernetes.io/docs/concepts/workloads/pods/",
+        "Pods",
+        {
+          "kind": "Pod",
+          "name": "api",
+          "image": "nginx:1.27",
+          "port": "80"
+        }
+      ],
+      [
+        "Write a Deployment named web with 3 replicas using nginx:1.27.",
+        "",
+        0,
+        "The Deployment needs metadata.name web, replicas 3 and image nginx:1.27.",
+        "Terminal",
+        "Easy",
+        "Deployments",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+        "Deployments",
+        {
+          "kind": "Deployment",
+          "name": "web",
+          "replicas": "3",
+          "image": "nginx:1.27"
+        }
+      ],
+      [
+        "Write a ClusterIP Service named web-svc selecting app=web and exposing port 80 to targetPort 8080.",
+        "",
+        0,
+        "The Service needs name web-svc, type ClusterIP, selector app=web, port 80 and targetPort 8080.",
+        "Terminal",
+        "Medium",
+        "Services",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services",
+        {
+          "kind": "Service",
+          "name": "web-svc",
+          "serviceType": "ClusterIP",
+          "selector": "app=web",
+          "port": "80",
+          "targetPort": "8080"
+        }
+      ],
+      [
+        "Write a ConfigMap named app-config containing LOG_LEVEL=debug.",
+        "",
+        0,
+        "The ConfigMap needs name app-config and data key LOG_LEVEL with value debug.",
+        "Terminal",
+        "Easy",
+        "Configuration",
+        "https://kubernetes.io/docs/concepts/configuration/configmap/",
+        "ConfigMaps",
+        {
+          "kind": "ConfigMap",
+          "name": "app-config",
+          "dataKey": "LOG_LEVEL",
+          "dataValue": "debug"
+        }
+      ],
+      [
+        "Write a NetworkPolicy named deny-all in namespace default that selects all Pods and denies ingress.",
+        "",
+        0,
+        "Use an empty podSelector, policyTypes Ingress and an empty ingress rule list.",
+        "Terminal",
+        "Hard",
+        "Security",
+        "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+        "NetworkPolicies",
+        {
+          "kind": "NetworkPolicy",
+          "name": "deny-all",
+          "policyType": "Ingress",
+          "denyAllIngress": true
+        }
+      ],
+      [
+        "Write a Job named batch-job using busybox:1.36 that executes echo hello.",
+        "",
+        0,
+        "The Job needs the requested name, image and command.",
+        "Terminal",
+        "Medium",
+        "Jobs",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+        "Jobs",
+        {
+          "kind": "Job",
+          "name": "batch-job",
+          "image": "busybox:1.36",
+          "command": "echo hello"
+        }
       ]
     ]
   },
@@ -461,7 +1149,12 @@
           "Ingress"
         ],
         0,
-        "ConfigMaps store non-confidential configuration values."
+        "ConfigMaps store non-confidential configuration values.",
+        "MCQ",
+        "Easy",
+        "Compute",
+        "https://kubernetes.io/docs/concepts/configuration/configmap/",
+        "ConfigMaps"
       ],
       [
         "Which object is intended for sensitive values?",
@@ -472,7 +1165,12 @@
           "Ingress"
         ],
         0,
-        "Secrets are intended for sensitive configuration such as passwords and tokens."
+        "Secrets are intended for sensitive configuration such as passwords and tokens.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://kubernetes.io/docs/concepts/configuration/secret/",
+        "Secrets"
       ],
       [
         "Which probe determines whether a container is ready to receive traffic?",
@@ -483,7 +1181,12 @@
           "Node probe"
         ],
         0,
-        "A readiness probe controls whether the container is considered ready to receive traffic."
+        "A readiness probe controls whether the container is considered ready to receive traffic.",
+        "MCQ",
+        "Easy",
+        "GKE",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Liveness, readiness and startup probes"
       ],
       [
         "Which resource defines HTTP routing rules in the traditional Ingress model?",
@@ -494,7 +1197,12 @@
           "DaemonSet"
         ],
         0,
-        "Ingress defines HTTP/HTTPS routing rules for external access to Services."
+        "Ingress defines HTTP/HTTPS routing rules for external access to Services.",
+        "Architecture",
+        "Medium",
+        "Infrastructure as Code",
+        "https://kubernetes.io/docs/concepts/services-networking/ingress/",
+        "Ingress"
       ],
       [
         "Which command creates a Deployment named web using nginx?",
@@ -505,7 +1213,12 @@
           "kubectl create pod web --deployment nginx"
         ],
         0,
-        "kubectl create deployment NAME --image=IMAGE creates a Deployment from the command line."
+        "kubectl create deployment NAME --image=IMAGE creates a Deployment from the command line.",
+        "MCQ",
+        "Easy",
+        "Artifact Management",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_deployment/",
+        "kubectl create deployment reference"
       ],
       [
         "Which command creates a ConfigMap from a literal value?",
@@ -516,7 +1229,12 @@
           "kubectl apply configmap app-config mode=prod"
         ],
         0,
-        "The --from-literal option creates a ConfigMap key/value directly from the command line."
+        "The --from-literal option creates a ConfigMap key/value directly from the command line.",
+        "MCQ",
+        "Easy",
+        "Resource Management",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_configmap/",
+        "kubectl create configmap reference"
       ],
       [
         "What is the purpose of a liveness probe?",
@@ -527,7 +1245,12 @@
           "Build an image"
         ],
         0,
-        "A liveness probe can indicate that a container is unhealthy and should be restarted."
+        "A liveness probe can indicate that a container is unhealthy and should be restarted.",
+        "Troubleshooting",
+        "Medium",
+        "GKE",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Liveness probes"
       ],
       [
         "What is the purpose of a startup probe?",
@@ -538,7 +1261,12 @@
           "Schedule a node"
         ],
         0,
-        "Startup probes protect slow-starting applications from being restarted by liveness checks before initialization completes."
+        "Startup probes protect slow-starting applications from being restarted by liveness checks before initialization completes.",
+        "Architecture",
+        "Medium",
+        "Compute",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Startup probes"
       ],
       [
         "Which field defines the container image in a Pod spec?",
@@ -549,7 +1277,12 @@
           "repository"
         ],
         0,
-        "The containers[].image field specifies the image to run."
+        "The containers[].image field specifies the image to run.",
+        "MCQ",
+        "Easy",
+        "Storage",
+        "https://kubernetes.io/docs/concepts/containers/images/",
+        "Pod container images"
       ],
       [
         "Which object can expose a Deployment internally within the cluster?",
@@ -560,7 +1293,12 @@
           "CronJob"
         ],
         0,
-        "A ClusterIP Service is the default internal networking mechanism for exposing selected Pods."
+        "A ClusterIP Service is the default internal networking mechanism for exposing selected Pods.",
+        "MCQ",
+        "Easy",
+        "Databases",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services"
       ],
       [
         "What does kubectl exec allow you to do?",
@@ -571,7 +1309,12 @@
           "Change a node's machine type"
         ],
         0,
-        "kubectl exec runs a command in a container of a running Pod."
+        "kubectl exec runs a command in a container of a running Pod.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/",
+        "kubectl exec reference"
       ],
       [
         "Which resource is used for scheduled batch work?",
@@ -582,7 +1325,12 @@
           "ConfigMap"
         ],
         0,
-        "A CronJob creates Jobs on a repeating schedule."
+        "A CronJob creates Jobs on a repeating schedule.",
+        "MCQ",
+        "Easy",
+        "Messaging",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/",
+        "CronJobs"
       ],
       [
         "Which resource represents a one-off batch workload?",
@@ -593,7 +1341,12 @@
           "Secret"
         ],
         0,
-        "A Job runs Pods to completion and tracks successful completion."
+        "A Job runs Pods to completion and tracks successful completion.",
+        "MCQ",
+        "Easy",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+        "Jobs"
       ],
       [
         "What does a HorizontalPodAutoscaler change?",
@@ -604,7 +1357,12 @@
           "The namespace name"
         ],
         0,
-        "An HPA adjusts the number of Pod replicas based on configured metrics."
+        "An HPA adjusts the number of Pod replicas based on configured metrics.",
+        "MCQ",
+        "Medium",
+        "Security",
+        "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+        "Horizontal Pod Autoscaling"
       ],
       [
         "Which command can show container logs?",
@@ -615,7 +1373,12 @@
           "kubectl show-log <pod>"
         ],
         0,
-        "kubectl logs retrieves logs from containers in Pods."
+        "kubectl logs retrieves logs from containers in Pods.",
+        "Architecture",
+        "Medium",
+        "GKE",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/",
+        "kubectl logs reference"
       ],
       [
         "Which field is commonly used to pass a ConfigMap value into an environment variable?",
@@ -626,7 +1389,12 @@
           "variables"
         ],
         0,
-        "The env section can reference ConfigMap keys through valueFrom.configMapKeyRef."
+        "The env section can reference ConfigMap keys through valueFrom.configMapKeyRef.",
+        "Terminal",
+        "Easy",
+        "Kubernetes",
+        "https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/",
+        "Define environment variables"
       ],
       [
         "Which Kubernetes resource packages an application as a desired set of Pods with rollout behavior?",
@@ -637,7 +1405,12 @@
           "Namespace"
         ],
         0,
-        "Deployments provide declarative updates and rollout management for replicated Pods."
+        "Deployments provide declarative updates and rollout management for replicated Pods.",
+        "MCQ",
+        "Easy",
+        "Operations",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+        "Deployments"
       ],
       [
         "What does a Service selector do?",
@@ -648,7 +1421,12 @@
           "Selects a namespace"
         ],
         0,
-        "Service selectors match Pod labels to determine the endpoints receiving traffic."
+        "Service selectors match Pod labels to determine the endpoints receiving traffic.",
+        "MCQ",
+        "Medium",
+        "IAM",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Service selectors"
       ],
       [
         "Which command creates a Secret from a literal value?",
@@ -659,7 +1437,12 @@
           "kubectl make-secret app-secret password=demo"
         ],
         0,
-        "kubectl create secret generic with --from-literal creates a Secret key/value."
+        "kubectl create secret generic with --from-literal creates a Secret key/value.",
+        "Terminal",
+        "Easy",
+        "CI/CD",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_generic/",
+        "kubectl create secret reference"
       ],
       [
         "What is a Pod?",
@@ -670,7 +1453,310 @@
           "A cloud project"
         ],
         0,
-        "A Pod is the smallest deployable unit in Kubernetes and can contain one or more closely coupled containers."
+        "A Pod is the smallest deployable unit in Kubernetes and can contain one or more closely coupled containers.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/workloads/pods/",
+        "Pods"
+      ],
+      [
+        "A container takes several minutes to initialize and is being killed by liveness checks during startup. What should you add?",
+        [
+          "A startup probe",
+          "A Service",
+          "A ConfigMap",
+          "A NetworkPolicy"
+        ],
+        0,
+        "A startup probe allows a slow-starting container to initialize before liveness checks begin.",
+        "Scenario",
+        "Hard",
+        "Application Health",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Probes"
+      ],
+      [
+        "An application needs an internal stable endpoint that routes to selected Pods. Which Service type is appropriate?",
+        [
+          "ClusterIP",
+          "LoadBalancer",
+          "NodePort only",
+          "ExternalName only"
+        ],
+        0,
+        "ClusterIP is the default Service type and provides an internal stable endpoint.",
+        "Architecture",
+        "Easy",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services"
+      ],
+      [
+        "Which command opens an interactive shell in a running container?",
+        [
+          "kubectl exec -it <pod> -- sh",
+          "kubectl logs -it <pod>",
+          "kubectl describe -it <pod>",
+          "kubectl shell <pod>"
+        ],
+        0,
+        "kubectl exec runs a command inside a container and can be used to open an interactive shell.",
+        "Terminal",
+        "Medium",
+        "Troubleshooting",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/",
+        "kubectl exec"
+      ],
+      [
+        "A nightly task must create a Job at a scheduled time. Which Kubernetes resource should define the schedule?",
+        [
+          "CronJob",
+          "Deployment",
+          "DaemonSet",
+          "Service"
+        ],
+        0,
+        "A CronJob creates Jobs according to a recurring schedule.",
+        "MCQ",
+        "Easy",
+        "Batch",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/",
+        "CronJobs"
+      ],
+      [
+        "An application is healthy but should receive no traffic until its dependency connection is ready. Which probe should be used?",
+        [
+          "Readiness probe",
+          "Liveness probe",
+          "Startup probe only",
+          "Node probe"
+        ],
+        0,
+        "Readiness controls whether a container is considered ready to receive traffic.",
+        "Scenario",
+        "Easy",
+        "Application Health",
+        "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+        "Liveness, readiness and startup probes"
+      ],
+      [
+        "A developer needs to inject a non-sensitive environment setting into a container and wants to keep it outside the Pod manifest values. What should they use?",
+        [
+          "ConfigMap",
+          "Secret",
+          "Service",
+          "DaemonSet"
+        ],
+        0,
+        "ConfigMaps are intended for non-confidential configuration and can be consumed as environment variables.",
+        "Scenario",
+        "Easy",
+        "Configuration",
+        "https://kubernetes.io/docs/concepts/configuration/configmap/",
+        "ConfigMaps"
+      ],
+      [
+        "A developer needs to provide a database password to a container without placing the value directly in the Pod environment definition. Which resource is appropriate?",
+        [
+          "Secret",
+          "ConfigMap",
+          "Service",
+          "Ingress"
+        ],
+        0,
+        "Secrets are intended for sensitive configuration such as passwords and tokens.",
+        "Scenario",
+        "Easy",
+        "Configuration",
+        "https://kubernetes.io/docs/concepts/configuration/secret/",
+        "Secrets"
+      ],
+      [
+        "An application needs HTTP routing from one external entry point to multiple Services based on URL paths. Which traditional Kubernetes resource provides those routing rules?",
+        [
+          "Ingress",
+          "ConfigMap",
+          "Job",
+          "DaemonSet"
+        ],
+        0,
+        "Ingress defines HTTP and HTTPS routing rules that can direct traffic to different Services.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/services-networking/ingress/",
+        "Ingress"
+      ],
+      [
+        "A developer wants an application to scale from 2 to 8 replicas based on CPU utilization. Which resource should they configure?",
+        [
+          "HorizontalPodAutoscaler",
+          "CronJob",
+          "Service",
+          "ConfigMap"
+        ],
+        0,
+        "A HorizontalPodAutoscaler adjusts the number of Pod replicas based on configured metrics such as CPU utilization.",
+        "Scenario",
+        "Medium",
+        "Scaling",
+        "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+        "Horizontal Pod Autoscaling"
+      ],
+      [
+        "A developer needs to investigate application output from a running Pod. Which command should they use?",
+        [
+          "kubectl logs <pod>",
+          "kubectl get events",
+          "kubectl describe node",
+          "kubectl get service"
+        ],
+        0,
+        "kubectl logs retrieves container logs from a Pod and is a standard first step for application troubleshooting.",
+        "Scenario",
+        "Easy",
+        "Troubleshooting",
+        "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/",
+        "kubectl logs reference"
+      ],
+      [
+        "An application performs a batch operation every night at 02:00. Which Kubernetes resource is designed for this recurring schedule?",
+        [
+          "CronJob",
+          "Job",
+          "Deployment",
+          "Service"
+        ],
+        0,
+        "CronJob creates Jobs according to a repeating schedule.",
+        "Scenario",
+        "Easy",
+        "Batch",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/",
+        "CronJobs"
+      ],
+      [
+        "A Service is returning no application traffic. The Pods are healthy, but the Service selector uses app=frontend while the Pods use app=api. What is the likely issue?",
+        [
+          "The Service selector does not match the Pod labels",
+          "The Pods need external IPs",
+          "The Service needs a Secret",
+          "The Deployment needs a CronJob"
+        ],
+        0,
+        "Service selectors determine which Pods become endpoints. The selector must match the relevant Pod labels.",
+        "Scenario",
+        "Medium",
+        "Networking",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services"
+      ],
+      [
+        "Write a Pod named frontend using nginx:1.27 with APP_ENV=prod as an environment variable.",
+        "",
+        0,
+        "The Pod needs the requested image and an env entry for APP_ENV=prod.",
+        "Terminal",
+        "Easy",
+        "Configuration",
+        "https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/",
+        "Environment variables",
+        {
+          "kind": "Pod",
+          "name": "frontend",
+          "image": "nginx:1.27",
+          "envKey": "APP_ENV",
+          "envValue": "prod"
+        }
+      ],
+      [
+        "Write a Deployment named api with 2 replicas using nginx:1.27 and template label app=api.",
+        "",
+        0,
+        "The Deployment needs replicas 2, image nginx:1.27 and template label app=api.",
+        "Terminal",
+        "Easy",
+        "Deployments",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+        "Deployments",
+        {
+          "kind": "Deployment",
+          "name": "api",
+          "replicas": "2",
+          "image": "nginx:1.27",
+          "templateLabel": "app=api"
+        }
+      ],
+      [
+        "Write a Service named api-svc selecting app=api and exposing port 80 to targetPort 8080.",
+        "",
+        0,
+        "The Service needs selector app=api, port 80 and targetPort 8080.",
+        "Terminal",
+        "Medium",
+        "Services",
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "Services",
+        {
+          "kind": "Service",
+          "name": "api-svc",
+          "selector": "app=api",
+          "port": "80",
+          "targetPort": "8080"
+        }
+      ],
+      [
+        "Write a Secret named db-secret using stringData with DB_PASSWORD=change-me.",
+        "",
+        0,
+        "The Secret needs name db-secret and stringData.DB_PASSWORD.",
+        "Terminal",
+        "Easy",
+        "Secrets",
+        "https://kubernetes.io/docs/concepts/configuration/secret/",
+        "Secrets",
+        {
+          "kind": "Secret",
+          "name": "db-secret",
+          "stringDataKey": "DB_PASSWORD",
+          "stringDataValue": "change-me"
+        }
+      ],
+      [
+        "Write a CronJob named nightly using busybox:1.36 that runs every day at 02:00 and executes echo backup.",
+        "",
+        0,
+        "Use schedule 0 2 * * * with busybox:1.36 and echo backup.",
+        "Terminal",
+        "Hard",
+        "CronJobs",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/",
+        "CronJobs",
+        {
+          "kind": "CronJob",
+          "name": "nightly",
+          "schedule": "0 2 * * *",
+          "image": "busybox:1.36",
+          "command": "echo backup"
+        }
+      ],
+      [
+        "Write a Pod named app with an HTTP readiness probe on /healthz at port 8080.",
+        "",
+        0,
+        "The Pod needs readinessProbe.httpGet.path /healthz and port 8080.",
+        "Terminal",
+        "Hard",
+        "Probes",
+        "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+        "Probes",
+        {
+          "kind": "Pod",
+          "name": "app",
+          "readinessPath": "/healthz",
+          "readinessPort": "8080"
+        }
       ]
     ]
   }
