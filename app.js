@@ -282,3 +282,11 @@ function practiceSimilar(){
   if(!pool.length)return;
   current={...current,difficulty:"Focused",type:"Concept practice",questions:pool};index=0;answers=Array(pool.length).fill(null);seconds=900;startTimer();render();
 }
+
+function choose(i){
+  answers[index]=i;render();
+  if(i!==current.questions[index][2]&&current.questions[index][4]!=="Terminal"){
+    const box=document.getElementById("ai-tutor");
+    if(box)box.insertAdjacentHTML("beforeend",'<button class="similar-button" onclick="practiceSimilar()">↻ Practice this concept</button>');
+  }
+}
