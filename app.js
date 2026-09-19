@@ -194,32 +194,42 @@ async function getAITutor(){
   aiLoading=true;
   showAI("Preparing AI Tutor…","loading");
   try{
-    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1");
+    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2");
     mod.env.allowLocalModels=false;
     mod.env.useBrowserCache=true;
-    const options={
-      dtype:"q4f16",
-      progress_callback:(p)=>{
-        if(p&&p.status==="progress"&&typeof p.progress==="number"){
-          showAI("Downloading AI model… "+Math.round(p.progress)+"%","loading");
-        }
+    const model="onnx-community/Qwen2.5-0.5B-Instruct";
+    const progress_callback=(p)=>{
+      if(p&&p.status==="progress"&&typeof p.progress==="number"){
+        showAI("Downloading AI model… "+Math.round(p.progress)+"%","loading");
       }
     };
     if("gpu" in navigator){
       try{
-        aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"webgpu"});
-      }catch(e){
-        console.warn("WebGPU unavailable, using WASM:",e);
-        aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"wasm"});
+        aiGenerator=await mod.pipeline("text-generation",model,{
+          device:"webgpu",
+          dtype:"q4f16",
+          progress_callback
+        });
+      }catch(webgpuError){
+        console.warn("WebGPU model load failed; trying WASM q4 fallback:",webgpuError);
+        aiGenerator=await mod.pipeline("text-generation",model,{
+          device:"wasm",
+          dtype:"q4",
+          progress_callback
+        });
       }
     }else{
-      aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct",{...options,device:"wasm"});
+      aiGenerator=await mod.pipeline("text-generation",model,{
+        device:"wasm",
+        dtype:"q4",
+        progress_callback
+      });
     }
     showAI("AI Tutor ready ✓","good");
     return aiGenerator;
   }catch(err){
     console.error("AI Tutor load failed:",err);
-    showAI("AI Tutor could not load. Check your connection, then refresh and try again.","bad");
+    showAI("AI Tutor could not load. Open DevTools → Console for the exact error, then try again.","bad");
     return null;
   }finally{aiLoading=false}
 }
