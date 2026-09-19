@@ -197,7 +197,7 @@ async function getAITutor(){
     const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2");
     mod.env.allowLocalModels=false;
     mod.env.useBrowserCache=true;
-    const model="onnx-community/Qwen2.5-0.5B-Instruct";
+    const model="HuggingFaceTB/SmolLM2-1.7B-Instruct";
     const progress_callback=(p)=>{
       if(p&&p.status==="progress"&&typeof p.progress==="number"){
         showAI("Downloading AI model… "+Math.round(p.progress)+"%","loading");
@@ -243,11 +243,11 @@ async function askAITutor(){
   const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
   const messages=[
-    {role:"system",content:"You are a short, reliable cloud certification tutor. Answer ONLY the learner's question. Use plain English. Never repeat words, phrases, sentences, or sections. Never produce filler, stream-of-consciousness text, or unrelated content. Do not invent information. Do not claim access to a live cluster. Keep the response concise and useful."},
+    {role:"system",content:"You are a concise cloud certification tutor. Give one clear explanation grounded only in the question and answers provided. Use plain English. Never repeat words or phrases. Never produce filler, stream-of-consciousness text, or unrelated topics. Do not invent information. Do not claim access to a live cluster. Return only the requested tutor explanation."},
     {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\n\nWrite exactly 4 short sections:\n1. Correct answer: state the correct answer.\n2. Why: explain the technical concept in 1-2 sentences.\n3. Your answer: if the learner was wrong, explain specifically why their answer does not fit; if correct, say why it fits.\n4. Exam tip: give one memorable clue.\n\nMaximum 100 words. Do not add any other sections. Do not repeat the question. Do not repeat the same word or sentence unnecessarily."}
   ];
   try{
-    const out=await gen(messages,{max_new_tokens:120,temperature:.15,do_sample:true,repetition_penalty:1.15,no_repeat_ngram_size:3,return_full_text:false});
+    const out=await gen(messages,{max_new_tokens:110,temperature:.2,do_sample:true,repetition_penalty:1.2,no_repeat_ngram_size:4,return_full_text:false});
     let text="";
     if(Array.isArray(out)&&out[0]){
       const g=out[0].generated_text;
