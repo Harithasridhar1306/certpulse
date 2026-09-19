@@ -187,6 +187,37 @@ function render(){const q=current.questions[index];document.getElementById("titl
 function checkTerminal(){const q=current.questions[index],spec=q[9],raw=document.getElementById("manifest-editor").value.trim();if(!raw){showTerminal("Write your YAML first.","bad");return}const has=function(s){return raw.toLowerCase().indexOf(String(s).toLowerCase())>=0};const checks=[];checks.push(["apiVersion",/apiVersion\\s*:/i.test(raw)]);checks.push(["kind",has("kind: "+spec.kind)]);checks.push(["metadata.name",has("name: "+spec.name)]);if(spec.image)checks.push(["image",has("image: "+spec.image)]);if(spec.port)checks.push(["port",has("containerPort: "+spec.port)||has("port: "+spec.port)]);if(spec.targetPort)checks.push(["targetPort",has("targetPort: "+spec.targetPort)]);if(spec.replicas)checks.push(["replicas",has("replicas: "+spec.replicas)]);if(spec.selector)checks.push(["selector",has(spec.selector)]);if(spec.templateLabel)checks.push(["template label",has(spec.templateLabel)]);if(spec.dataKey)checks.push(["data key",has(spec.dataKey)]);if(spec.dataValue)checks.push(["data value",has(spec.dataValue)]);if(spec.stringDataKey)checks.push(["stringData key",has(spec.stringDataKey)]);if(spec.stringDataValue)checks.push(["stringData value",has(spec.stringDataValue)]);if(spec.serviceType)checks.push(["service type",has("type: "+spec.serviceType)]);if(spec.policyType)checks.push(["policy type",has("policyTypes")&&has(spec.policyType)]);if(spec.denyAllIngress)checks.push(["deny-all ingress",/ingress\\s*:\\s*\\[\\s*\\]/i.test(raw)]);if(spec.command)checks.push(["command",has(spec.command)]);if(spec.schedule)checks.push(["schedule",has(spec.schedule)]);if(spec.envKey)checks.push(["env key",has(spec.envKey)]);if(spec.envValue)checks.push(["env value",has(spec.envValue)]);if(spec.readinessPath)checks.push(["readiness path",has(spec.readinessPath)]);if(spec.readinessPort)checks.push(["readiness port",has(spec.readinessPort)]);const passed=checks.filter(function(x){return x[1]}).length;const ok=passed===checks.length;answers[index]=ok?0:null;showTerminal((ok?"✓ Manifest checks passed. ":"Some required fields are missing. ")+passed+"/"+checks.length+" checks passed.",ok?"good":"bad")}
 function showTerminal(msg,kind){const el=document.getElementById("terminal-result");if(el){el.className=kind;el.textContent=msg}}
 
+let aiGenerator=null,aiLoading=false;
+async function getAITutor(){
+  if(aiGenerator)return aiGenerator;
+  if(aiLoading)return null;
+  aiLoading=true; showAI("Loading the free local AI model in your browser… The first load can take a little while.","loading");
+  try{
+    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2");
+    mod.env.allowLocalModels=false; mod.env.useBrowserCache=true;
+    try{aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct-ONNX",{device:"webgpu"})}
+    catch(e){aiGenerator=await mod.pipeline("text-generation","onnx-community/Qwen2.5-0.5B-Instruct-ONNX",{device:"wasm"})}
+    return aiGenerator;
+  }catch(err){console.error(err);showAI("The free local AI model could not load. Try Chrome/Edge with hardware acceleration enabled.","bad");return null}
+  finally{aiLoading=false}
+}
+async function askAITutor(){
+  const q=current.questions[index],selected=answers[index];
+  if(selected===null){showAI("Choose an answer first, then ask the AI tutor.","bad");return}
+  const button=document.getElementById("ai-button");if(button){button.disabled=true;button.textContent="AI is thinking…"}
+  const gen=await getAITutor();if(!gen){if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}return}
+  const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
+  const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
+  const prompt="You are a concise cloud certification tutor. Certification: "+current.name+". Question: "+q[0]+". Learner answer: "+selectedText+". Correct answer: "+correctText+". Explain why the answer is right or wrong in simple technical language. Give one practical tip. Do not claim access to a live cluster. Keep it under 140 words.";
+  try{
+    const out=await gen(prompt,{max_new_tokens:180,temperature:.35,do_sample:true});
+    let text="";if(Array.isArray(out)&&out[0]){const g=out[0].generated_text;text=typeof g==="string"?g:(Array.isArray(g)?g[g.length-1]?.content||"":String(g||""))}
+    showAI(text.trim()||"The AI tutor did not return a usable explanation. Try again.","good");
+  }catch(err){console.error(err);showAI("The local AI model hit an error. You can continue with the built-in explanation and official reference.","bad")}
+  finally{if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}}
+}
+function showAI(msg,kind){const el=document.getElementById("ai-tutor");if(el){el.className="ai-tutor "+kind;el.innerHTML="<strong>✦ AI Tutor</strong><p>"+escapeHtml(msg)+"</p>"}}
+
 function choose(i){answers[index]=i;render()}
 function next(){if(answers[index]===null){alert("Please choose an answer first.");return}if(index<current.questions.length-1){index++;render()}else finish()}
 function finish(){clearInterval(timerId);const correct=answers.reduce((n,a,i)=>n+(a===current.questions[i][2]?1:0),0);const pct=Math.round(correct/current.questions.length*100);document.getElementById("progress-bar").style.width="100%";document.getElementById("score-live").textContent=`${correct}/${current.questions.length} correct`;document.getElementById("question").innerHTML=`<div class="result"><div class="eyebrow">MOCK EXAM COMPLETE</div><div class="result-score">${pct}%</div><p>You got <strong>${correct} of ${current.questions.length}</strong> questions correct.</p></div>`;document.getElementById("options").innerHTML=`<div class="review">${current.questions.map((q,i)=>{const ok=answers[i]===q[2],ref=[q[8],q[7]];return `<div class="review-item"><strong>Q${i+1}. ${escapeHtml(q[0])}</strong><p class="${ok?"correct":"incorrect"}">${ok?"✓ Correct":"✗ Incorrect"} · Your answer: ${answers[i]===null?"Not answered":escapeHtml(q[1][answers[i]])}</p><p><strong>Correct answer:</strong> ${escapeHtml(q[1][q[2]])}</p><div class="answer-explanation"><strong>Why this answer?</strong><p>${escapeHtml(q[3])}</p></div><div class="question-reference"><strong>📚 Reference</strong><p><a href="${ref[1]}" target="_blank" rel="noopener noreferrer">${escapeHtml(ref[0])} ↗</a></p></div></div>`}).join("")}</div>`;document.getElementById("next-button").textContent="Retake exam";document.getElementById("next-button").onclick=()=>start(currentKey,current.difficulty,current.type)}
