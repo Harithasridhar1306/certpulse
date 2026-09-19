@@ -1,44 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CertPulse — Cloud Certification Practice</title>
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
-<header class="topbar">
-  <div class="brand"><span class="brand-dot"></span> CertPulse</div>
-  <span class="topbar-note">LOCAL-FIRST · ADAPTIVE · AI-ASSISTED</span>
-</header>
+<header class="topbar"><div class="brand"><span class="brand-dot"></span> CertPulse</div><span class="topbar-note">LOCAL-FIRST · ADAPTIVE · AI-ASSISTED</span></header>
 <main>
-  <section class="hero">
-    <div class="eyebrow">CLOUD + KUBERNETES CERTIFICATION PREP</div>
-    <h1>Practice smarter.<br><span>Know where you stand.</span></h1>
-    <p class="hero-copy">A certification practice engine that adapts to your weak spots, explains mistakes locally, and turns every attempt into the next practice plan.</p>
-  </section>
-  <section id="dashboard" class="dashboard" aria-live="polite"></section>
-  <section id="cards" class="cert-grid"></section>
-  <section id="practice" class="practice-shell" hidden>
-    <div class="practice-top">
-      <button class="back-button" onclick="backToCerts()">← Certifications</button>
-      <div id="timer" class="timer">45:00</div>
-    </div>
-    <div class="progress-track"><div id="progress-bar"></div></div>
-    <div class="practice-card">
-      <div class="question-meta"><span id="progress"></span><span id="question-type"></span><span id="score-live">0 answered</span></div>
-      <h2 id="title"></h2>
-      <div id="question"></div>
-      <div id="options"></div>
-      <div id="ai-tutor" class="ai-tutor" aria-live="polite"></div>
-      <div class="nav-row">
-        <button id="next-button" class="primary-button" onclick="next()">Next question →</button>
-      </div>
-    </div>
-  </section>
+<section class="hero"><div class="eyebrow">CLOUD + KUBERNETES CERTIFICATION PREP</div><h1>Practice smarter.<br><span>Know where you stand.</span></h1><p class="hero-copy">A certification practice engine that adapts to your weak spots, explains mistakes locally, and turns every attempt into the next practice plan.</p></section>
+<section id="dashboard" class="dashboard" aria-live="polite"></section>
+<section id="cards" class="cert-grid"></section>
+<section id="practice" class="practice-shell" hidden>
+<div class="practice-top"><button class="back-button" onclick="backToCerts()">← Certifications</button><div id="timer" class="timer">45:00</div></div>
+<div class="progress-track"><div id="progress-bar"></div></div>
+<div class="practice-card"><div class="question-meta"><span id="progress"></span><span id="question-type"></span><span id="score-live">0 answered</span></div><h2 id="title"></h2><div id="question"></div><div id="options"></div><div id="ai-tutor" class="ai-tutor" aria-live="polite"></div><div class="nav-row"><button id="next-button" class="primary-button" onclick="next()">Next question →</button></div></div>
+</section>
 </main>
-<footer>CertPulse · v0.7 · adaptive learning engine · local-first AI · Independent learning project · Not affiliated with any certification provider</footer>
-<script src="app.js?v=12
-<script src="adaptive.js?v=1"></script>"></script>
+<footer>CertPulse · v0.8 · adaptive learning engine · local-first AI · Independent learning project · Not affiliated with any certification provider</footer>
+<script src="app.js?v=13"></script>
+<script src="adaptive.js?v=2"></script>
 </body>
 </html>
