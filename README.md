@@ -105,3 +105,56 @@ This was important because small browser models can produce repetitive or low-qu
 ## Disclaimer
 
 CertPulse is an independent learning project and is not affiliated with Google Cloud, CNCF, Linux Foundation or any certification provider.
+
+
+## Platform architecture — v0.8
+
+CertPulse is being evolved from a static learning app into a deployable cloud-native platform.
+
+    Browser
+      |
+      +-- GitHub Pages
+      |     +-- adaptive learner
+      |     +-- local AI tutor
+      |     +-- versioned question bank
+      |
+      +-- Optional API
+            +-- /health
+            +-- /metrics
+            +-- /api/certifications
+            +-- /api/questions/:cert
+            +-- /api/validate/yaml
+                     |
+                     +-- js-yaml parser + task validation
+
+Delivery:
+GitHub Actions -> Docker -> Artifact Registry -> Cloud Run/GKE
+
+Infrastructure:
+Terraform -> Google Cloud
+
+Kubernetes:
+k8s/deployment.yaml + kustomization.yaml
+
+The backend is intentionally optional for the public GitHub Pages demo. The free static app remains usable while the repository now contains a realistic API and cloud deployment path.
+
+### Hands-on validation
+
+The API parses submitted Kubernetes YAML rather than relying only on string matching. It validates syntax first and can then check task-specific fields such as apiVersion, kind, metadata.name and container requirements.
+
+### Observability
+
+The API exposes lightweight Prometheus-compatible /metrics plus /health. This is the starting point for structured logs, traces, Cloud Monitoring and SLOs.
+
+### Production path
+
+1. Container image build and CI validation.
+2. Artifact Registry image publishing.
+3. Terraform-managed GCP infrastructure.
+4. GKE deployment with Workload Identity.
+5. API-backed learner profiles.
+6. Persistent database for cross-device progress.
+7. OpenTelemetry + Cloud Monitoring.
+8. GitOps deployment with FluxCD.
+
+No cloud credentials, project IDs or paid-service secrets are committed to the repository.
