@@ -244,7 +244,7 @@ async function askAITutor(){
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
   const referenceExplanation=q[3]||"";
   const messages=[
-    {role:"system",content:"You are a certification tutor rewriting a verified explanation. The reference explanation is authoritative. Do not invent technical facts or discuss unrelated topics. Return exactly four short labeled lines and STOP. Use these labels: Correct answer:, Why:, Your answer:, Exam tip:. Never repeat words or phrases unnecessarily. Maximum 70 words."},
+    {role:"system",content:"You are a certification tutor rewriting a verified explanation. The reference explanation is authoritative. Do not invent technical facts or discuss unrelated topics. Return exactly four short labeled lines and STOP. Use these labels: Correct answer:, Why:, Your answer:, Exam tip:. Never repeat words or phrases unnecessarily. The Exam tip must be specific to the question, not generic advice. Maximum 70 words."},
     {role:"user",content:"Question: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nVerified explanation: "+referenceExplanation+"\n\nRewrite the verified explanation for this learner. Keep the technical meaning unchanged. If the learner is wrong, explain why in one sentence. Return only the four labeled lines."}
   ];
   try{
@@ -282,7 +282,21 @@ function fallbackTutorExplanation(q,selected){
   const correct=q[4]==="Terminal"?"the required manifest":q[1][q[2]];
   const explanation=q[3]||"Review the built-in explanation for the key concept.";
   const isCorrect=selected===q[2];
-  return "Correct answer: "+correct+"\\nWhy: "+explanation+"\\nYour answer: "+(isCorrect?"This matches the correct concept.":"This does not match the concept described by the question.")+"\\nExam tip: Focus on the key noun or action in the question before choosing.";
+  const tip=getExamTip(q,correct);
+  return "Correct answer: "+correct+"\n\nWhy: "+explanation+"\n\nYour answer: "+(isCorrect?"This matches the correct concept.":"Your answer is different from the concept described by the question.")+"\n\nExam tip: "+tip;
+}
+function getExamTip(q,correct){
+  const text=(q[0]+" "+correct).toLowerCase();
+  if(text.includes("persistentvolumeclaim")||text.includes("storage requirement")) return "PVC = a request for storage; the PV is the storage resource that satisfies that request.";
+  if(text.includes("service")&&text.includes("stable network")) return "Service = a stable network endpoint for a group of Pods; Pod IPs can change.";
+  if(text.includes("deployment")&&text.includes("replica")) return "Deployment = manages replicated Pods and maintains the desired replica count.";
+  if(text.includes("configmap")) return "ConfigMap = non-sensitive configuration data; use Secret for sensitive values.";
+  if(text.includes("secret")) return "Secret = sensitive configuration such as passwords or tokens; ConfigMap is for non-sensitive data.";
+  if(text.includes("networkpolicy")) return "NetworkPolicy controls which Pod traffic is allowed or denied.";
+  if(text.includes("cronjob")) return "CronJob = creates Jobs on a schedule; look for recurring execution.";
+  if(text.includes("job")) return "Job = runs a workload to completion rather than continuously serving traffic.";
+  if(text.includes("readiness")) return "Readiness probe = whether a Pod is ready to receive traffic; liveness is about restarting an unhealthy container.";
+  return "Match the resource to its responsibility: ask what the object is designed to provide or control.";
 }
 function showAI(msg,kind){const el=document.getElementById("ai-tutor");if(el){el.className="ai-tutor "+kind;el.innerHTML="<strong>✦ AI Tutor</strong><p>"+escapeHtml(msg)+"</p>"}}
 function choose(i){answers[index]=i;render()}
