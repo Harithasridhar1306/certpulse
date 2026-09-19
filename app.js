@@ -243,11 +243,11 @@ async function askAITutor(){
   const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
   const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
   const messages=[
-    {role:"system",content:"You are a concise cloud certification tutor. Explain technical concepts accurately and simply. Do not claim access to a live cluster. If the learner's answer is wrong, explicitly explain why it is wrong and contrast it with the correct concept. If the learner's answer is correct, explain why it is correct. Always identify the key clue in the question and give one practical exam tip."},
-    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nUse this structure: Correct answer; Why it is correct; Why the learner's answer is wrong (only when wrong); Key clue; Exam tip. Keep it beginner-friendly, technically accurate, and under 140 words."}
+    {role:"system",content:"You are a short, reliable cloud certification tutor. Answer ONLY the learner's question. Use plain English. Never repeat words, phrases, sentences, or sections. Never produce filler, stream-of-consciousness text, or unrelated content. Do not invent information. Do not claim access to a live cluster. Keep the response concise and useful."},
+    {role:"user",content:"Certification: "+current.name+"\nQuestion: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\n\nWrite exactly 4 short sections:\n1. Correct answer: state the correct answer.\n2. Why: explain the technical concept in 1-2 sentences.\n3. Your answer: if the learner was wrong, explain specifically why their answer does not fit; if correct, say why it fits.\n4. Exam tip: give one memorable clue.\n\nMaximum 100 words. Do not add any other sections. Do not repeat the question. Do not repeat the same word or sentence unnecessarily."}
   ];
   try{
-    const out=await gen(messages,{max_new_tokens:180,temperature:.35,do_sample:true});
+    const out=await gen(messages,{max_new_tokens:120,temperature:.15,do_sample:true,repetition_penalty:1.15,no_repeat_ngram_size:3,return_full_text:false});
     let text="";
     if(Array.isArray(out)&&out[0]){
       const g=out[0].generated_text;
