@@ -1,1 +1,41 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CertPulse</title><link rel="stylesheet" href="style.css"></head><body><main><p class="eyebrow">CLOUD CERTIFICATION PREP</p><h1>Practice like it’s the real exam.</h1><p>Free practice for GCP and Kubernetes certifications.</p><div id="cards"></div><div id="practice" hidden><h2 id="title"></h2><p id="question"></p><div id="options"></div><button onclick="next()">Next</button></div></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CertPulse — Cloud Certification Practice</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-dot"></span> CertPulse</div>
+  <span class="topbar-note">FREE CERTIFICATION PRACTICE</span>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">CLOUD + KUBERNETES CERTIFICATION PREP</div>
+    <h1>Practice smarter.<br><span>Know where you stand.</span></h1>
+    <p class="hero-copy">Choose a certification and work through exam-style questions with instant feedback.</p>
+  </section>
+  <section id="cards" class="cert-grid"></section>
+  <section id="practice" class="practice-shell" hidden>
+    <div class="practice-top">
+      <button class="back-button" onclick="backToCerts()">← Certifications</button>
+      <div id="timer" class="timer">45:00</div>
+    </div>
+    <div class="progress-track"><div id="progress-bar"></div></div>
+    <div class="practice-card">
+      <div class="question-meta"><span id="progress"></span><span id="score-live">0 answered</span></div>
+      <h2 id="title"></h2>
+      <div id="question"></div>
+      <div id="options"></div>
+      <div class="nav-row">
+        <button id="next-button" class="primary-button" onclick="next()">Next question →</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>CertPulse · Independent learning project · Not affiliated with any certification provider</footer>
+<script src="app.js?v=3"></script>
+</body>
+</html>
