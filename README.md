@@ -21,6 +21,9 @@ GitHub Pages
     │
     ├── index.html / style.css
     │
+    ├── data/exams.json
+    │    └── versioned question bank
+    │
     └── app.js
           │
           ├── Exam engine
@@ -44,6 +47,7 @@ GitHub Pages is intentionally used as a static hosting layer; the current learne
 
 ## Features
 
+- Dynamic question bank loaded from versioned JSON at runtime
 - GCP Associate Cloud Engineer practice
 - CKA practice
 - CKAD practice
@@ -64,8 +68,8 @@ GitHub Pages is intentionally used as a static hosting layer; the current learne
 
 The current version is deliberately simple, but the next iterations are focused on making the system more dynamic:
 
-1. Move the question bank into versioned JSON/data sources.
-2. Add a normalized question schema with skills, domains and references.
+1. Expand the versioned JSON question bank to 100–200+ questions per certification.
+2. Add a normalized question schema with skills, tags and richer source metadata.
 3. Build adaptive question selection from learner history.
 4. Add richer terminal validation with real YAML parsing.
 5. Add an optional backend for cross-device progress.
