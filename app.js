@@ -12,7 +12,7 @@ async function loadExamBank(){
       ...exam,
       questions:exam.questions.map(q=>[q.question,q.options,q.correctAnswer,q.explanation,
         String(q.type||"").replace(/^./,x=>x.toUpperCase()),String(q.difficulty||"").replace(/^./,x=>x.toUpperCase()),
-        q.domain,q.reference?.url||"",q.reference?.title||"",null,q.id,q.skills||[],q.terminalSpec||null])
+        q.domain,q.reference?.url||"",q.reference?.title||"",q.terminalSpec||null,q.id,q.skills||[]])
     }]));
     examsReady=true;
     return exams;
