@@ -15,6 +15,7 @@ async function loadExamBank(){
         q.domain,q.reference?.url||"",q.reference?.title||"",q.terminalSpec||null,q.id,q.skills||[]])
     }]));
     examsReady=true;
+    window.dispatchEvent(new Event("certpulse-ready"));
     return exams;
   }catch(err){
     console.error("CertPulse question bank failed to load:",err);
