@@ -1,2 +1,377 @@
+const exams={
+GCP:{name:"GCP Associate Cloud Engineer",questions:[
+["A team needs to run a stateless HTTP container without managing a Kubernetes cluster. Which service fits? ",["Cloud Run","Cloud Storage","BigQuery","Cloud DNS"],0,"Cloud Run runs containers as a managed service without requiring you to manage a Kubernetes cluster."],
+["Which IAM approach follows the principle of least privilege?",["Grant only required permissions","Give Owner to every developer","Use one shared account","Make the resource public"],0,"Least privilege means granting only the permissions required to perform the task."],
+["In GKE, which object gives a stable network endpoint for a group of Pods?",["Service","ConfigMap","Secret","Namespace"],0,"A Kubernetes Service provides a stable virtual IP and DNS name for a selected set of Pods."],
+["What is the main purpose of a Terraform module?",["Reuse infrastructure configuration","Store container images","Monitor CPU usage","Create Kubernetes Pods directly"],0,"Terraform modules package reusable infrastructure configuration so it can be used consistently across environments."],
+["Which Google Cloud service is designed for storing and managing container images and other artifacts?",["Artifact Registry","Cloud DNS","Cloud SQL","Cloud Scheduler"],0,"Artifact Registry is Google's managed service for storing and managing packages and container images."],
+["Which GCP resource is used to logically group resources for access control and billing?",["Project","Subnet","Zone","Firewall rule"],0,"Projects are the fundamental organizing boundary for many Google Cloud resources, IAM and billing."],
+["Which GKE component runs on each node and manages containers?",["kubelet","Cloud Router","Cloud NAT","Cloud Scheduler"],0,"The kubelet is the Kubernetes node agent that ensures containers described by Pods are running."],
+["What does a regional managed instance group provide?",["VM instances distributed across zones in a region","Only one VM","A Kubernetes namespace","A Cloud Storage bucket"],0,"Regional managed instance groups distribute VMs across multiple zones in a region for higher availability."],
+["Which service provides object storage in Google Cloud?",["Cloud Storage","Cloud SQL","Filestore","Memorystore"],0,"Cloud Storage is Google's managed object storage service."],
+["Which GCP service is a managed relational database?",["Cloud SQL","Cloud Storage","Pub/Sub","Cloud CDN"],0,"Cloud SQL provides managed MySQL, PostgreSQL and SQL Server databases."],
+["What does Cloud NAT primarily allow?",["Private resources to make outbound internet connections","Internet users to directly reach private VMs","Pods to bypass IAM","Buckets to become public"],0,"Cloud NAT enables resources without external IP addresses to make outbound connections to the internet."],
+["Which service is used for asynchronous messaging between applications?",["Pub/Sub","Cloud DNS","Cloud Armor","Cloud Storage"],0,"Pub/Sub is a managed messaging service for asynchronous, decoupled communication."],
+["What is a VPC subnet associated with?",["A region","A project only","A single VM","A billing account"],0,"Google Cloud VPC subnets are regional resources."],
+["Which service helps protect applications from Layer 7 attacks and DDoS threats?",["Cloud Armor","Cloud Storage","Cloud SQL","Cloud Scheduler"],0,"Cloud Armor provides application-layer protection and DDoS defense for supported Google Cloud workloads."],
+["What does a GKE Deployment primarily manage?",["Desired state and rollout of replicated Pods","DNS zones","Cloud Storage objects","IAM policies"],0,"A Deployment manages ReplicaSets and supports declarative updates and rollouts for Pods."],
+["Which tool is commonly used to interact with Kubernetes clusters from a terminal?",["kubectl","gcloud storage","terraform fmt","gsutil only"],0,"kubectl is the standard Kubernetes command-line client."],
+["Which Google Cloud service provides centralized logging?",["Cloud Logging","Cloud DNS","Cloud Build","Cloud Deploy"],0,"Cloud Logging collects and lets you query logs from Google Cloud and supported applications."],
+["What is the purpose of a GCP service account?",["Provide an identity for workloads or applications","Replace a VPC","Store secrets as plain text","Create a billing account"],0,"Service accounts are identities intended for workloads and applications rather than human users."],
+["Which service builds container images and runs CI/CD build steps?",["Cloud Build","Cloud DNS","Cloud SQL","Cloud NAT"],0,"Cloud Build executes build steps and can build container images and other artifacts."],
+["What does a firewall rule in a VPC control?",["Network traffic to or from VM instances","IAM permissions for users","Container image tags","Cloud billing exports"],0,"VPC firewall rules control allowed or denied network traffic for applicable VM interfaces."]
+]},
+CKA:{name:"Certified Kubernetes Administrator",questions:[
+["Which command lists Pods in every namespace?",["kubectl get pods -A","kubectl get pods","kubectl list pods","kubectl pods"],0,"The -A/--all-namespaces flag requests resources across all namespaces."],
+["Which Kubernetes object provides stable networking for a set of Pods?",["Service","Deployment","ConfigMap","Job"],0,"A Service exposes a stable virtual endpoint for selected Pods."],
+["Which component stores Kubernetes cluster state?",["etcd","kubelet","CoreDNS","containerd"],0,"etcd is the distributed key-value store used by Kubernetes for cluster state."],
+["What is a Kubernetes namespace mainly used for?",["Logical isolation and organization","Replacing nodes","Encrypting images","Creating cloud accounts"],0,"Namespaces provide a scope for names and a way to organize and isolate resources within a cluster."],
+["Which command shows detailed information and events for a Pod?",["kubectl describe pod <name>","kubectl show pod <name>","kubectl inspect pod <name>","kubectl debug pod <name>"],0,"kubectl describe displays detailed resource information and recent events."],
+["Which object maintains a requested number of identical Pods?",["Deployment","ConfigMap","ServiceAccount","Ingress"],0,"A Deployment manages ReplicaSets to maintain the desired number of Pod replicas."],
+["Which command displays nodes in a cluster?",["kubectl get nodes","kubectl nodes","kubectl list nodes","kubectl show nodes"],0,"kubectl get nodes lists the nodes registered with the cluster."],
+["What does a readiness probe affect?",["Whether a Pod is considered ready to receive traffic","Whether a node is created","Whether an image is built","Whether a Secret is encrypted"],0,"Readiness determines whether a container is ready to receive traffic from Services."],
+["Which component assigns Pods to nodes?",["kube-scheduler","kubelet","kube-proxy","CoreDNS"],0,"The kube-scheduler selects suitable nodes for unscheduled Pods."],
+["What does kube-proxy primarily help implement?",["Service networking rules","Container image builds","Persistent disk snapshots","API authentication"],0,"kube-proxy maintains network rules that implement Service connectivity on nodes."],
+["Which resource stores non-sensitive configuration?",["ConfigMap","Secret","Service","Ingress"],0,"ConfigMaps store configuration data that is not intended to be confidential."],
+["Which command shows the current cluster contexts?",["kubectl config get-contexts","kubectl get contexts","kubectl contexts","kubectl show config"],0,"kubectl config get-contexts lists contexts in the kubeconfig."],
+["What is a DaemonSet designed to do?",["Run a Pod on selected or every eligible node","Create one-time Jobs","Expose a database","Store cluster state"],0,"DaemonSets ensure a copy of a Pod runs on nodes matching their scheduling rules."],
+["What is a PersistentVolume (PV)?",["Cluster storage provisioned for use by workloads","A Pod template","A network policy","A container image"],0,"A PersistentVolume represents storage available to the cluster."],
+["What does a PersistentVolumeClaim request?",["Storage with specified requirements","A Kubernetes user","A node","A container image"],0,"A PVC is a request for storage by a workload."],
+["Which object controls allowed network traffic between Pods?",["NetworkPolicy","ConfigMap","Secret","ServiceAccount"],0,"NetworkPolicy defines rules for allowed ingress and egress traffic to selected Pods."],
+["Which command applies a manifest declaratively?",["kubectl apply -f file.yaml","kubectl run -f file.yaml","kubectl create-file file.yaml","kubectl manifest file.yaml"],0,"kubectl apply creates or updates resources from a manifest declaratively."],
+["Which Kubernetes object stores sensitive configuration data?",["Secret","ConfigMap","Service","Namespace"],0,"Secrets are designed to hold sensitive data such as credentials and tokens."],
+["What does a Service of type LoadBalancer generally provide?",["External load-balancing access where supported","A new namespace","A storage volume","A CronJob"],0,"LoadBalancer Services request external load-balancing integration from the underlying platform."],
+["Which command is useful for viewing recent cluster events?",["kubectl get events","kubectl events-only","kubectl show events","kubectl list-events"],0,"kubectl get events displays Event resources, which are useful for troubleshooting."]
+]},
+CKAD:{name:"Certified Kubernetes Application Developer",questions:[
+["Which object stores non-sensitive configuration data?",["ConfigMap","Secret","Service","Ingress"],0,"ConfigMaps store non-confidential configuration values."],
+["Which object is intended for sensitive values?",["Secret","ConfigMap","Service","Ingress"],0,"Secrets are intended for sensitive configuration such as passwords and tokens."],
+["Which probe determines whether a container is ready to receive traffic?",["Readiness probe","Startup probe","Liveness probe","Node probe"],0,"A readiness probe controls whether the container is considered ready to receive traffic."],
+["Which resource defines HTTP routing rules in the traditional Ingress model?",["Ingress","ConfigMap","Job","DaemonSet"],0,"Ingress defines HTTP/HTTPS routing rules for external access to Services."],
+["Which command creates a Deployment named web using nginx?",["kubectl create deployment web --image=nginx","kubectl deploy web nginx","kubectl run deployment web nginx","kubectl create pod web --deployment nginx"],0,"kubectl create deployment NAME --image=IMAGE creates a Deployment from the command line."],
+["Which command creates a ConfigMap from a literal value?",["kubectl create configmap app-config --from-literal=mode=prod","kubectl create map app-config mode=prod","kubectl configmap app-config mode=prod","kubectl apply configmap app-config mode=prod"],0,"The --from-literal option creates a ConfigMap key/value directly from the command line."],
+["What is the purpose of a liveness probe?",["Determine whether a container should be restarted","Decide whether traffic should be sent","Create a node","Build an image"],0,"A liveness probe can indicate that a container is unhealthy and should be restarted."],
+["What is the purpose of a startup probe?",["Give slow-starting containers time to initialize","Expose a Service externally","Create a Secret","Schedule a node"],0,"Startup probes protect slow-starting applications from being restarted by liveness checks before initialization completes."],
+["Which field defines the container image in a Pod spec?",["image","containerImage","imageName","repository"],0,"The containers[].image field specifies the image to run."],
+["Which object can expose a Deployment internally within the cluster?",["Service","ConfigMap","Secret","CronJob"],0,"A ClusterIP Service is the default internal networking mechanism for exposing selected Pods."],
+["What does kubectl exec allow you to do?",["Execute a command inside a running container","Create a cluster","Build an image","Change a node's machine type"],0,"kubectl exec runs a command in a container of a running Pod."],
+["Which resource is used for scheduled batch work?",["CronJob","Service","Ingress","ConfigMap"],0,"A CronJob creates Jobs on a repeating schedule."],
+["Which resource represents a one-off batch workload?",["Job","Service","Ingress","Secret"],0,"A Job runs Pods to completion and tracks successful completion."],
+["What does a HorizontalPodAutoscaler change?",["The number of Pod replicas based on metrics","The VM machine type","The container image digest","The namespace name"],0,"An HPA adjusts the number of Pod replicas based on configured metrics."],
+["Which command can show container logs?",["kubectl logs <pod>","kubectl output <pod>","kubectl print logs <pod>","kubectl show-log <pod>"],0,"kubectl logs retrieves logs from containers in Pods."],
+["Which field is commonly used to pass a ConfigMap value into an environment variable?",["env","volumeOnly","config","variables"],0,"The env section can reference ConfigMap keys through valueFrom.configMapKeyRef."],
+["Which Kubernetes resource packages an application as a desired set of Pods with rollout behavior?",["Deployment","Service","ConfigMap","Namespace"],0,"Deployments provide declarative updates and rollout management for replicated Pods."],
+["What does a Service selector do?",["Selects Pods that should receive Service traffic","Selects a node OS","Selects a container registry","Selects a namespace"],0,"Service selectors match Pod labels to determine the endpoints receiving traffic."],
+["Which command creates a Secret from a literal value?",["kubectl create secret generic app-secret --from-literal=password=demo","kubectl create secret app-secret password=demo","kubectl secret generic app-secret password=demo","kubectl make-secret app-secret password=demo"],0,"kubectl create secret generic with --from-literal creates a Secret key/value."],
+["What is a Pod?",["The smallest deployable unit in Kubernetes, containing one or more containers","A Kubernetes cluster","A container registry","A cloud project"],0,"A Pod is the smallest deployable unit in Kubernetes and can contain one or more closely coupled containers."]
+]}};
+
+const refs={
+GCP:[
+["Cloud Run documentation","https://cloud.google.com/run/docs"],["IAM overview","https://cloud.google.com/iam/docs/overview"],["GKE Services","https://cloud.google.com/kubernetes-engine/docs/concepts/service"],["Terraform modules","https://developer.hashicorp.com/terraform/language/modules"],["Artifact Registry documentation","https://cloud.google.com/artifact-registry/docs"],["Google Cloud resource hierarchy","https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy"],["GKE architecture","https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture"],["Managed instance groups overview","https://cloud.google.com/compute/docs/instance-groups"],["Cloud Storage documentation","https://cloud.google.com/storage/docs"],["Cloud SQL documentation","https://cloud.google.com/sql/docs"],["Cloud NAT documentation","https://cloud.google.com/nat/docs/overview"],["Pub/Sub documentation","https://cloud.google.com/pubsub/docs/overview"],["VPC networks and subnets","https://cloud.google.com/vpc/docs/vpc#vpc_networks_and_subnets"],["Cloud Armor documentation","https://cloud.google.com/armor/docs"],["GKE Deployments","https://cloud.google.com/kubernetes-engine/docs/concepts/deployment"],["kubectl reference","https://kubernetes.io/docs/reference/kubectl/"],["Cloud Logging documentation","https://cloud.google.com/logging/docs"],["Service accounts overview","https://cloud.google.com/iam/docs/service-account-overview"],["Cloud Build documentation","https://cloud.google.com/build/docs/overview"],["VPC firewall rules","https://cloud.google.com/firewall/docs/firewalls"]
+],
+CKA:[
+["kubectl get reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"],["Kubernetes Services","https://kubernetes.io/docs/concepts/services-networking/service/"],["etcd documentation","https://etcd.io/docs/"],["Namespaces","https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"],["kubectl describe reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/"],["Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"],["kubectl get nodes","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"],["Liveness, readiness and startup probes","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"],["kube-scheduler","https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/"],["kube-proxy","https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/"],["ConfigMaps","https://kubernetes.io/docs/concepts/configuration/configmap/"],["kubectl config reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_config/"],["DaemonSets","https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/"],["PersistentVolumes","https://kubernetes.io/docs/concepts/storage/persistent-volumes/"],["PersistentVolumeClaims","https://kubernetes.io/docs/concepts/storage/persistent-volumes/"],["NetworkPolicies","https://kubernetes.io/docs/concepts/services-networking/network-policies/"],["kubectl apply reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_apply/"],["Secrets","https://kubernetes.io/docs/concepts/configuration/secret/"],["Service type LoadBalancer","https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer"],["Kubernetes Events","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_events/"]
+],
+CKAD:[
+["ConfigMaps","https://kubernetes.io/docs/concepts/configuration/configmap/"],["Secrets","https://kubernetes.io/docs/concepts/configuration/secret/"],["Liveness, readiness and startup probes","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"],["Ingress","https://kubernetes.io/docs/concepts/services-networking/ingress/"],["kubectl create deployment reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_deployment/"],["kubectl create configmap reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_configmap/"],["Liveness probes","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"],["Startup probes","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"],["Pod container images","https://kubernetes.io/docs/concepts/containers/images/"],["Services","https://kubernetes.io/docs/concepts/services-networking/service/"],["kubectl exec reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/"],["CronJobs","https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"],["Jobs","https://kubernetes.io/docs/concepts/workloads/controllers/job/"],["Horizontal Pod Autoscaling","https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"],["kubectl logs reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/"],["Define environment variables","https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/"],["Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"],["Service selectors","https://kubernetes.io/docs/concepts/services-networking/service/"],["kubectl create secret reference","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_secret_generic/"],["Pods","https://kubernetes.io/docs/concepts/workloads/pods/"]
+]};
+
+
+// Expanded question-bank layer: every question carries type, difficulty, domain and source.
+const scenarioBank={
+GCP:[
+["A GKE workload has no external IP address but must download packages from the internet. Security does not want inbound internet access to the workload. What should you configure?",["Cloud NAT","External LoadBalancer","Public IP on every Pod","Cloud DNS"],0,"Cloud NAT provides outbound internet access for resources without external IP addresses without making those resources directly reachable from the internet.","Scenario","Medium","Networking","https://cloud.google.com/nat/docs/overview","Cloud NAT documentation"],
+["A team wants to run a stateless HTTP API and scale it automatically without managing Kubernetes nodes. Which service best fits?",["Cloud Run","Compute Engine unmanaged VM","Cloud Storage","Cloud SQL"],0,"Cloud Run runs containers as a managed service and handles infrastructure and scaling for the application.","Scenario","Easy","Compute","https://cloud.google.com/run/docs","Cloud Run documentation"],
+["A developer needs to deploy an application but should not be able to change IAM policies or billing settings. Which access approach should you use?",["Grant only the roles required for the application task","Grant Project Owner","Grant Billing Admin","Share a service account key"],0,"Least privilege means granting only the permissions needed for the task rather than broad administrative roles.","Scenario","Medium","IAM","https://cloud.google.com/iam/docs/overview","IAM overview"],
+["A production application runs across multiple GKE Pods. Users need one stable endpoint even when individual Pods are recreated. What should you create?",["A Kubernetes Service","A ConfigMap","A Secret","A Job"],0,"A Service provides a stable virtual endpoint and selects the Pods that receive traffic.","Scenario","Easy","GKE","https://cloud.google.com/kubernetes-engine/docs/concepts/service","GKE Services"],
+["A company needs to store container images centrally and use them from its CI/CD pipelines. Which Google Cloud service should it use?",["Artifact Registry","Cloud Storage only","Cloud DNS","Cloud Scheduler"],0,"Artifact Registry is designed to store and manage container images and other software artifacts.","Scenario","Easy","Artifact Management","https://cloud.google.com/artifact-registry/docs","Artifact Registry documentation"],
+["A regional application must remain available if one zone has an outage. Which VM design provides distribution across multiple zones?",["Regional managed instance group","Single-zone unmanaged VM","One Cloud Storage bucket","One GKE Pod"],0,"Regional managed instance groups distribute VM instances across multiple zones within a region.","Scenario","Medium","Compute","https://cloud.google.com/compute/docs/instance-groups","Managed instance groups overview"],
+["An application needs asynchronous communication so producers do not have to wait for consumers to process messages. Which service is appropriate?",["Pub/Sub","Cloud DNS","Cloud SQL","Cloud Armor"],0,"Pub/Sub provides asynchronous messaging and decouples publishers from subscribers.","Scenario","Easy","Messaging","https://cloud.google.com/pubsub/docs/overview","Pub/Sub documentation"],
+["A team needs a managed relational database for an application using PostgreSQL and does not want to manage database infrastructure. Which service fits?",["Cloud SQL","Cloud Storage","Pub/Sub","Filestore"],0,"Cloud SQL is a managed relational database service supporting PostgreSQL, MySQL and SQL Server.","Scenario","Easy","Databases","https://cloud.google.com/sql/docs","Cloud SQL documentation"]
+],
+CKA:[
+["A Pod remains Pending and the cluster has available nodes, but the Pod has a nodeSelector that matches no node labels. What should you investigate first?",["Node labels and the Pod's scheduling constraints","Container image tags","Service selectors","CoreDNS records"],0,"A nodeSelector requires a matching node label. If no node satisfies it, the scheduler cannot place the Pod.","Scenario","Medium","Scheduling","https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/","Assigning Pods to Nodes"],
+["A Service exists but sends no traffic to a set of Pods. The Pods are Running. What should you check first?",["Whether the Service selector matches the Pod labels","Whether etcd has been deleted","Whether the Pods have public IPs","Whether the node has a LoadBalancer"],0,"A Service uses its selector to identify endpoint Pods, so mismatched labels are a common cause of no endpoints.","Scenario","Medium","Networking","https://kubernetes.io/docs/concepts/services-networking/service/","Services"],
+["A Pod starts successfully but is repeatedly restarted because its application takes several minutes to initialize. Which probe can protect it during startup?",["Startup probe","Readiness probe only","Service probe","Node probe"],0,"A startup probe gives a slow-starting container time to initialize before liveness checking takes effect.","Scenario","Medium","Workloads","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/","Liveness, readiness and startup probes"],
+["An administrator needs to understand why a Pod was not scheduled and wants events associated with the Pod. Which command is most useful?",["kubectl describe pod <name>","kubectl get service <name>","kubectl logs <name>","kubectl get configmap"],0,"kubectl describe shows detailed resource information and recent events, which are useful for scheduling troubleshooting.","Scenario","Easy","Troubleshooting","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/","kubectl describe reference"],
+["A cluster administrator needs to run a logging agent on every eligible node. Which controller is designed for this?",["DaemonSet","Deployment","Job","CronJob"],0,"A DaemonSet ensures a copy of a Pod runs on each node that matches its scheduling rules.","Scenario","Easy","Workloads","https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/","DaemonSets"],
+["A workload needs persistent storage and should request 20Gi with a particular access mode. Which Kubernetes object should the workload create?",["PersistentVolumeClaim","PersistentVolume directly","ConfigMap","Service"],0,"A PersistentVolumeClaim expresses a workload's storage requirements and can bind to suitable storage.","Scenario","Medium","Storage","https://kubernetes.io/docs/concepts/storage/persistent-volumes/","PersistentVolumes and claims"],
+["An administrator needs to allow traffic between selected Pods only on specific ports. Which resource provides this control?",["NetworkPolicy","ConfigMap","Secret","ServiceAccount"],0,"NetworkPolicy defines allowed ingress and egress traffic for selected Pods.","Scenario","Medium","Security","https://kubernetes.io/docs/concepts/services-networking/network-policies/","NetworkPolicies"],
+["A team wants a workload to run once and retry until it completes successfully. Which resource should they use?",["Job","Deployment","DaemonSet","Service"],0,"A Job creates Pods and tracks them until the required successful completion is reached.","Scenario","Easy","Workloads","https://kubernetes.io/docs/concepts/workloads/controllers/job/","Jobs"]
+],
+CKAD:[
+["An application is healthy but should receive no traffic until its dependency connection is ready. Which probe should be used?",["Readiness probe","Liveness probe","Startup probe only","Node probe"],0,"Readiness controls whether a container is considered ready to receive traffic.","Scenario","Easy","Application Health","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/","Liveness, readiness and startup probes"],
+["A developer needs to inject a non-sensitive environment setting into a container and wants to keep it outside the Pod manifest values. What should they use?",["ConfigMap","Secret","Service","DaemonSet"],0,"ConfigMaps are intended for non-confidential configuration and can be consumed as environment variables.","Scenario","Easy","Configuration","https://kubernetes.io/docs/concepts/configuration/configmap/","ConfigMaps"],
+["A developer needs to provide a database password to a container without placing the value directly in the Pod environment definition. Which resource is appropriate?",["Secret","ConfigMap","Service","Ingress"],0,"Secrets are intended for sensitive configuration such as passwords and tokens.","Scenario","Easy","Configuration","https://kubernetes.io/docs/concepts/configuration/secret/","Secrets"],
+["An application needs HTTP routing from one external entry point to multiple Services based on URL paths. Which traditional Kubernetes resource provides those routing rules?",["Ingress","ConfigMap","Job","DaemonSet"],0,"Ingress defines HTTP and HTTPS routing rules that can direct traffic to different Services.","Scenario","Medium","Networking","https://kubernetes.io/docs/concepts/services-networking/ingress/","Ingress"],
+["A developer wants an application to scale from 2 to 8 replicas based on CPU utilization. Which resource should they configure?",["HorizontalPodAutoscaler","CronJob","Service","ConfigMap"],0,"A HorizontalPodAutoscaler adjusts the number of Pod replicas based on configured metrics such as CPU utilization.","Scenario","Medium","Scaling","https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/","Horizontal Pod Autoscaling"],
+["A developer needs to investigate application output from a running Pod. Which command should they use?",["kubectl logs <pod>","kubectl get events","kubectl describe node","kubectl get service"],0,"kubectl logs retrieves container logs from a Pod and is a standard first step for application troubleshooting.","Scenario","Easy","Troubleshooting","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/","kubectl logs reference"],
+["An application performs a batch operation every night at 02:00. Which Kubernetes resource is designed for this recurring schedule?",["CronJob","Job","Deployment","Service"],0,"CronJob creates Jobs according to a repeating schedule.","Scenario","Easy","Batch","https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/","CronJobs"],
+["A Service is returning no application traffic. The Pods are healthy, but the Service selector uses app=frontend while the Pods use app=api. What is the likely issue?",["The Service selector does not match the Pod labels","The Pods need external IPs","The Service needs a Secret","The Deployment needs a CronJob"],0,"Service selectors determine which Pods become endpoints. The selector must match the relevant Pod labels.","Scenario","Medium","Networking","https://kubernetes.io/docs/concepts/services-networking/service/","Services"]
+]};
+
+const moreQuestions={
+GCP:[
+["A team wants private VMs to reach Google APIs without assigning external IP addresses. Which feature should they enable on the subnet?",["Private Google Access","Cloud CDN","Cloud Armor","External passthrough Load Balancer"],0,"Private Google Access enables VMs without external IP addresses to reach Google APIs and services.","Scenario","Medium","Networking","https://cloud.google.com/vpc/docs/private-google-access","Private Google Access"],
+["A production API needs automatic scaling and should run from a container image without managing servers. Which service fits?",["Cloud Run","Cloud Storage","Cloud SQL","BigQuery"],0,"Cloud Run provides a managed environment for containerized applications with automatic scaling.","Architecture","Easy","Compute","https://cloud.google.com/run/docs","Cloud Run"],
+["A developer needs to determine why an IAM request is denied. Which area should be checked first?",["The principal's granted roles and applicable resource policies","The VM disk size","The subnet's region","The Cloud Storage class"],0,"IAM authorization depends on the permissions granted to the principal and applicable policies.","Troubleshooting","Medium","IAM","https://cloud.google.com/iam/docs/overview","IAM overview"],
+["Which command displays the currently configured Google Cloud project?",["gcloud config get-value project","gcloud project current","gcloud show-project","gcloud iam project"],0,"The gcloud config get-value project command displays the active project configuration.","Terminal","Easy","CLI","https://cloud.google.com/sdk/gcloud/reference/config/get-value","gcloud config get-value"]
+],
+CKA:[
+["A Deployment rollout is broken and the previous version was known to work. Which command can roll the Deployment back?",["kubectl rollout undo deployment/<name>","kubectl delete deployment/<name>","kubectl drain deployment/<name>","kubectl reset deployment/<name>"],0,"kubectl rollout undo can revert a Deployment to a previous revision.","Terminal","Medium","Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/","Deployments"],
+["A Pod cannot be scheduled because its node affinity requires a label absent from all nodes. What should you inspect?",["Node labels and the Pod affinity rules","Service ports","Container logs","ConfigMap keys"],0,"Node affinity and node labels determine which nodes satisfy the scheduling requirement.","Scenario","Hard","Scheduling","https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/","Assigning Pods to Nodes"],
+["A logging agent must run on every node automatically, including nodes added later. Which controller should manage it?",["DaemonSet","Deployment","Job","CronJob"],0,"A DaemonSet maintains a Pod on each eligible node.","Architecture","Easy","Workloads","https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/","DaemonSets"],
+["Which command shows CPU and memory usage for Pods when the Metrics API is available?",["kubectl top pods","kubectl describe pods","kubectl get metrics pods","kubectl resource pods"],0,"kubectl top pods displays current resource usage through the Metrics API.","Terminal","Medium","Observability","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_top/","kubectl top"]
+],
+CKAD:[
+["A container takes several minutes to initialize and is being killed by liveness checks during startup. What should you add?",["A startup probe","A Service","A ConfigMap","A NetworkPolicy"],0,"A startup probe allows a slow-starting container to initialize before liveness checks begin.","Scenario","Hard","Application Health","https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/","Probes"],
+["An application needs an internal stable endpoint that routes to selected Pods. Which Service type is appropriate?",["ClusterIP","LoadBalancer","NodePort only","ExternalName only"],0,"ClusterIP is the default Service type and provides an internal stable endpoint.","Architecture","Easy","Networking","https://kubernetes.io/docs/concepts/services-networking/service/","Services"],
+["Which command opens an interactive shell in a running container?",["kubectl exec -it <pod> -- sh","kubectl logs -it <pod>","kubectl describe -it <pod>","kubectl shell <pod>"],0,"kubectl exec runs a command inside a container and can be used to open an interactive shell.","Terminal","Medium","Troubleshooting","https://kubernetes.io/docs/reference/kubectl/generated/kubectl_exec/","kubectl exec"],
+["A nightly task must create a Job at a scheduled time. Which Kubernetes resource should define the schedule?",["CronJob","Deployment","DaemonSet","Service"],0,"A CronJob creates Jobs according to a recurring schedule.","MCQ","Easy","Batch","https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/","CronJobs"]
+]};
+const terminalQuestions={
+CKA:[
+["Write a Pod manifest named api using nginx:1.27 with containerPort 80. Write the YAML in the playground and check it.",[],0,"The manifest needs a Pod named api, nginx:1.27, and containerPort 80.","Terminal","Easy","Pods","https://kubernetes.io/docs/concepts/workloads/pods/","Pods",{kind:"Pod",name:"api",image:"nginx:1.27",port:"80"}],
+["Write a Deployment named web with 3 replicas using nginx:1.27.","",0,"The Deployment needs metadata.name web, replicas 3 and image nginx:1.27.","Terminal","Easy","Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/","Deployments",{kind:"Deployment",name:"web",replicas:"3",image:"nginx:1.27"}],
+["Write a ClusterIP Service named web-svc selecting app=web and exposing port 80 to targetPort 8080.","",0,"The Service needs name web-svc, type ClusterIP, selector app=web, port 80 and targetPort 8080.","Terminal","Medium","Services","https://kubernetes.io/docs/concepts/services-networking/service/","Services",{kind:"Service",name:"web-svc",serviceType:"ClusterIP",selector:"app=web",port:"80",targetPort:"8080"}],
+["Write a ConfigMap named app-config containing LOG_LEVEL=debug.","",0,"The ConfigMap needs name app-config and data key LOG_LEVEL with value debug.","Terminal","Easy","Configuration","https://kubernetes.io/docs/concepts/configuration/configmap/","ConfigMaps",{kind:"ConfigMap",name:"app-config",dataKey:"LOG_LEVEL",dataValue:"debug"}],
+["Write a NetworkPolicy named deny-all in namespace default that selects all Pods and denies ingress.","",0,"Use an empty podSelector, policyTypes Ingress and an empty ingress rule list.","Terminal","Hard","Security","https://kubernetes.io/docs/concepts/services-networking/network-policies/","NetworkPolicies",{kind:"NetworkPolicy",name:"deny-all",policyType:"Ingress",denyAllIngress:true}],
+["Write a Job named batch-job using busybox:1.36 that executes echo hello.","",0,"The Job needs the requested name, image and command.","Terminal","Medium","Jobs","https://kubernetes.io/docs/concepts/workloads/controllers/job/","Jobs",{kind:"Job",name:"batch-job",image:"busybox:1.36",command:"echo hello"}]
+],
+CKAD:[
+["Write a Pod named frontend using nginx:1.27 with APP_ENV=prod as an environment variable.","",0,"The Pod needs the requested image and an env entry for APP_ENV=prod.","Terminal","Easy","Configuration","https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/","Environment variables",{kind:"Pod",name:"frontend",image:"nginx:1.27",envKey:"APP_ENV",envValue:"prod"}],
+["Write a Deployment named api with 2 replicas using nginx:1.27 and template label app=api.","",0,"The Deployment needs replicas 2, image nginx:1.27 and template label app=api.","Terminal","Easy","Deployments","https://kubernetes.io/docs/concepts/workloads/controllers/deployment/","Deployments",{kind:"Deployment",name:"api",replicas:"2",image:"nginx:1.27",templateLabel:"app=api"}],
+["Write a Service named api-svc selecting app=api and exposing port 80 to targetPort 8080.","",0,"The Service needs selector app=api, port 80 and targetPort 8080.","Terminal","Medium","Services","https://kubernetes.io/docs/concepts/services-networking/service/","Services",{kind:"Service",name:"api-svc",selector:"app=api",port:"80",targetPort:"8080"}],
+["Write a Secret named db-secret using stringData with DB_PASSWORD=change-me.","",0,"The Secret needs name db-secret and stringData.DB_PASSWORD.","Terminal","Easy","Secrets","https://kubernetes.io/docs/concepts/configuration/secret/","Secrets",{kind:"Secret",name:"db-secret",stringDataKey:"DB_PASSWORD",stringDataValue:"change-me"}],
+["Write a CronJob named nightly using busybox:1.36 that runs every day at 02:00 and executes echo backup.","",0,"Use schedule 0 2 * * * with busybox:1.36 and echo backup.","Terminal","Hard","CronJobs","https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/","CronJobs",{kind:"CronJob",name:"nightly",schedule:"0 2 * * *",image:"busybox:1.36",command:"echo backup"}],
+["Write a Pod named app with an HTTP readiness probe on /healthz at port 8080.","",0,"The Pod needs readinessProbe.httpGet.path /healthz and port 8080.","Terminal","Hard","Probes","https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/","Probes",{kind:"Pod",name:"app",readinessPath:"/healthz",readinessPort:"8080"}]
+]};
+Object.entries(terminalQuestions).forEach(([key,items])=>exams[key].questions.push(...items));
+function enrichQuestions(){
+  const typeByIndex=["MCQ","MCQ","MCQ","Architecture","MCQ","MCQ","Troubleshooting","Architecture","MCQ","MCQ","Scenario","MCQ","MCQ","MCQ","Architecture","Terminal","MCQ","MCQ","Terminal","Scenario"];
+  const domainByIndex=["Compute","IAM","GKE","Infrastructure as Code","Artifact Management","Resource Management","GKE","Compute","Storage","Databases","Networking","Messaging","Networking","Security","GKE","Kubernetes","Operations","IAM","CI/CD","Networking"];
+  const difficultyByIndex=["Easy","Medium","Easy","Medium","Easy","Easy","Medium","Medium","Easy","Easy","Medium","Easy","Easy","Medium","Medium","Easy","Easy","Medium","Easy","Medium"];
+  Object.entries(moreQuestions).forEach(([key,items])=>exams[key].questions.push(...items));
+Object.entries(exams).forEach(([key,exam])=>{
+    exam.questions=exam.questions.map((q,i)=>q.length>=9?q:[...q,typeByIndex[i]||"Concept",difficultyByIndex[i]||"Medium",domainByIndex[i]||"General",refs[key][i][1],refs[key][i][0]]);
+    exam.questions.push(...scenarioBank[key]);
+  });
+}
+enrichQuestions();
+
+function shuffle(list){
+  const a=[...list];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  return a;
+}
+function createExam(key,avoid=[],difficulty="Any",type="Any"){
+  const bank=exams[key].questions.filter(q=>!avoid.includes(q[0]));
+  const exact=shuffle(bank.filter(q=>(difficulty==="Any"||q[5]===difficulty)&&(type==="Any"||q[4]===type)));
+  const sameDifficulty=shuffle(bank.filter(q=>(difficulty==="Any"||q[5]===difficulty)&&!exact.includes(q)));
+  const sameType=shuffle(bank.filter(q=>(type==="Any"||q[4]===type)&&!exact.includes(q)&&!sameDifficulty.includes(q)));
+  const rest=shuffle(bank.filter(q=>!exact.includes(q)&&!sameDifficulty.includes(q)&&!sameType.includes(q)));
+  return [...exact,...sameDifficulty,...sameType,...rest].slice(0,20);
+}
+
+
+const PROGRESS_KEY="certpulse-progress-v1";
+let currentKey=null,current=null,index=0,answers=[],seconds=2700,timerId=null,lastExamQuestions=[],attemptSaved=false;
+
+function loadProgress(){
+  try{return JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{"attempts":[]}')}catch(e){return {attempts:[]}}
+}
+function saveProgress(data){localStorage.setItem(PROGRESS_KEY,JSON.stringify(data))}
+function recordAttempt(){
+  if(attemptSaved)return;
+  const correct=answers.reduce((n,a,i)=>n+(a===current.questions[i][2]?1:0),0);
+  const domains={};
+  current.questions.forEach((q,i)=>{
+    const domain=q[6]||"General";
+    if(!domains[domain])domains[domain]={correct:0,total:0};
+    domains[domain].total++;
+    if(answers[i]===q[2])domains[domain].correct++;
+  });
+  const data=loadProgress();
+  data.attempts.unshift({
+    id:Date.now(),
+    certification:currentKey,
+    name:current.name,
+    score:Math.round(correct/current.questions.length*100),
+    correct,total:current.questions.length,
+    difficulty:current.difficulty,type:current.type,
+    domains,
+    completedAt:new Date().toISOString()
+  });
+  data.attempts=data.attempts.slice(0,50);
+  saveProgress(data);
+  attemptSaved=true;
+  renderDashboard();
+}
+function resetProgress(){
+  if(confirm("Clear your CertPulse practice history from this browser?")){
+    localStorage.removeItem(PROGRESS_KEY);
+    renderDashboard();
+  }
+}
+function renderDashboard(){
+  const el=document.getElementById("dashboard");
+  if(!el)return;
+  const data=loadProgress(),attempts=data.attempts||[];
+  const total=attempts.reduce((n,a)=>n+a.total,0);
+  const correct=attempts.reduce((n,a)=>n+a.correct,0);
+  const avg=attempts.length?Math.round(attempts.reduce((n,a)=>n+a.score,0)/attempts.length):0;
+  const domainTotals={};
+  attempts.forEach(a=>Object.entries(a.domains||{}).forEach(([d,v])=>{
+    if(!domainTotals[d])domainTotals[d]={correct:0,total:0};
+    domainTotals[d].correct+=v.correct; domainTotals[d].total+=v.total;
+  }));
+  const domains=Object.entries(domainTotals).map(([name,v])=>({name,pct:Math.round(v.correct/v.total*100),total:v.total})).sort((a,b)=>a.pct-b.pct);
+  const certCounts={};
+  attempts.forEach(a=>certCounts[a.certification]=(certCounts[a.certification]||0)+1);
+  const recent=attempts.slice(0,5);
+  el.innerHTML=`
+    <div class="dashboard-head">
+      <div><div class="eyebrow">YOUR LEARNING DATA</div><h2>Progress, not just scores.</h2><p>CertPulse remembers practice history in this browser. No account or paid backend required.</p></div>
+      <button class="ghost-button" onclick="resetProgress()">Reset history</button>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><span>Attempts</span><strong>${attempts.length}</strong></div>
+      <div class="stat-card"><span>Questions</span><strong>${total}</strong></div>
+      <div class="stat-card"><span>Average score</span><strong>${avg}%</strong></div>
+      <div class="stat-card"><span>Correct answers</span><strong>${total?`${Math.round(correct/total*100)}%`:"—"}</strong></div>
+    </div>
+    <div class="dashboard-grid">
+      <div class="dashboard-panel"><div class="panel-title">Knowledge map</div>${domains.length?domains.slice(0,8).map(d=>`<div class="domain-row"><div><span>${escapeHtml(d.name)}</span><small>${d.total} questions</small></div><strong>${d.pct}%</strong><div class="mini-track"><i style="width:${d.pct}%"></i></div></div>`).join(""):"<div class="empty-state">Take your first mock to start building your knowledge map.</div>"}</div>
+      <div class="dashboard-panel"><div class="panel-title">Recent attempts</div>${recent.length?recent.map(a=>`<div class="attempt-row"><div><strong>${escapeHtml(a.certification)}</strong><small>${escapeHtml(a.difficulty)} · ${escapeHtml(a.type)}</small></div><b>${a.score}%</b></div>`).join(""):"<div class="empty-state">Your completed mocks will appear here.</div>"}</div>
+    </div>
+  `;
+}
+const cards=document.getElementById("cards");
+
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function buildCards(){cards.innerHTML=Object.entries(exams).map(([k,e])=>`<article class="cert-card"><span class="cert-code">${k}</span><h2>${e.name}</h2><p>${e.questions.length}-question bank · choose difficulty and question style before starting.</p><div class="exam-settings"><label>Difficulty<select id="difficulty-${k}"><option>Any</option><option>Easy</option><option>Medium</option><option>Hard</option></select></label><label>Question style<select id="type-${k}"><option>Any</option><option>MCQ</option><option>Scenario</option><option>Terminal</option><option>Architecture</option></select></label></div><button class="start-button" onclick="start('${k}',document.getElementById('difficulty-${k}').value,document.getElementById('type-${k}').value)">Start practice →</button></article>`).join("")}
+function start(k,difficulty="Any",type="Any"){attemptSaved=false;currentKey=k;const previous=lastExamQuestions;current={...exams[k],difficulty,type,questions:createExam(k,previous,difficulty,type)};if(!current.questions.length){alert("No questions are available yet.");return}lastExamQuestions=current.questions.map(q=>q[0]);index=0;answers=Array(current.questions.length).fill(null);seconds=2700;cards.hidden=true;document.getElementById("practice").hidden=false;startTimer();render()}
+function startTimer(){clearInterval(timerId);updateTimer();timerId=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(timerId);finish()}},1000)}
+function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");const el=document.getElementById("timer");el.textContent=m+":"+s;el.classList.toggle("warning",seconds<=300)}
+function render(){const q=current.questions[index];document.getElementById("title").textContent=`${current.name} · ${current.difficulty} · ${current.type}`;document.getElementById("progress").textContent=`Question ${index+1} of ${current.questions.length}`;document.getElementById("question-type").textContent=`${q[4]} · ${q[5]} · ${q[6]}`;document.getElementById("score-live").textContent=`${answers.filter(x=>x!==null).length} answered`;document.getElementById("progress-bar").style.width=((index+1)/current.questions.length*100)+"%";document.getElementById("question").innerHTML=`<div class="question-text">${escapeHtml(q[0])}</div>`;if(q[4]==="Terminal"){document.getElementById("options").innerHTML=`<div class="terminal-playground"><div class="terminal-head"><span>manifest.yaml</span><span>Write → Check → Continue</span></div><textarea id="manifest-editor" spellcheck="false" placeholder="apiVersion: v1\nkind: Pod\nmetadata:\n  name: ..."></textarea><button class="check-button" onclick="checkTerminal()">Check manifest →</button><div id="terminal-result"></div></div>`}else{document.getElementById("options").innerHTML=q[1].map((x,i)=>`<button class="option ${answers[index]===i?"selected":""}" onclick="choose(${i})"><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${escapeHtml(x)}</span></button>`).join("")}if(q[4]!=="Terminal"){document.getElementById("ai-tutor").innerHTML="";document.getElementById("ai-tutor").className="ai-tutor";document.getElementById("ai-tutor").insertAdjacentHTML("beforeend",`<button id="ai-button" class="ai-button" onclick="askAITutor()">✦ Ask AI Tutor</button>`)}else{document.getElementById("ai-tutor").innerHTML="";document.getElementById("ai-tutor").className="ai-tutor"}document.getElementById("next-button").textContent=index===current.questions.length-1?"Submit exam →":"Next question →"}
+function checkTerminal(){const q=current.questions[index],spec=q[9],raw=document.getElementById("manifest-editor").value.trim();if(!raw){showTerminal("Write your YAML first.","bad");return}const has=function(s){return raw.toLowerCase().indexOf(String(s).toLowerCase())>=0};const checks=[];checks.push(["apiVersion",/apiVersion\\s*:/i.test(raw)]);checks.push(["kind",has("kind: "+spec.kind)]);checks.push(["metadata.name",has("name: "+spec.name)]);if(spec.image)checks.push(["image",has("image: "+spec.image)]);if(spec.port)checks.push(["port",has("containerPort: "+spec.port)||has("port: "+spec.port)]);if(spec.targetPort)checks.push(["targetPort",has("targetPort: "+spec.targetPort)]);if(spec.replicas)checks.push(["replicas",has("replicas: "+spec.replicas)]);if(spec.selector)checks.push(["selector",has(spec.selector)]);if(spec.templateLabel)checks.push(["template label",has(spec.templateLabel)]);if(spec.dataKey)checks.push(["data key",has(spec.dataKey)]);if(spec.dataValue)checks.push(["data value",has(spec.dataValue)]);if(spec.stringDataKey)checks.push(["stringData key",has(spec.stringDataKey)]);if(spec.stringDataValue)checks.push(["stringData value",has(spec.stringDataValue)]);if(spec.serviceType)checks.push(["service type",has("type: "+spec.serviceType)]);if(spec.policyType)checks.push(["policy type",has("policyTypes")&&has(spec.policyType)]);if(spec.denyAllIngress)checks.push(["deny-all ingress",/ingress\\s*:\\s*\\[\\s*\\]/i.test(raw)]);if(spec.command)checks.push(["command",has(spec.command)]);if(spec.schedule)checks.push(["schedule",has(spec.schedule)]);if(spec.envKey)checks.push(["env key",has(spec.envKey)]);if(spec.envValue)checks.push(["env value",has(spec.envValue)]);if(spec.readinessPath)checks.push(["readiness path",has(spec.readinessPath)]);if(spec.readinessPort)checks.push(["readiness port",has(spec.readinessPort)]);const passed=checks.filter(function(x){return x[1]}).length;const ok=passed===checks.length;answers[index]=ok?0:null;showTerminal((ok?"✓ Manifest checks passed. ":"Some required fields are missing. ")+passed+"/"+checks.length+" checks passed.",ok?"good":"bad")}
+function showTerminal(msg,kind){const el=document.getElementById("terminal-result");if(el){el.className=kind;el.textContent=msg}}
+
 let aiGenerator=null,aiLoading=false;
-// ...
+async function getAITutor(){
+  if(aiGenerator)return aiGenerator;
+  if(aiLoading)return null;
+  aiLoading=true;
+  showAI("Preparing AI Tutor…","loading");
+  try{
+    const mod=await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2");
+    mod.env.allowLocalModels=false;
+    mod.env.useBrowserCache=true;
+    const model="HuggingFaceTB/SmolLM2-1.7B-Instruct";
+    const progress_callback=(p)=>{
+      if(p&&p.status==="progress"&&typeof p.progress==="number"){
+        showAI("Downloading AI model… "+Math.round(p.progress)+"%","loading");
+      }
+    };
+    if("gpu" in navigator){
+      try{
+        aiGenerator=await mod.pipeline("text-generation",model,{
+          device:"webgpu",
+          dtype:"q4f16",
+          progress_callback
+        });
+      }catch(webgpuError){
+        console.warn("WebGPU model load failed; trying WASM q4 fallback:",webgpuError);
+        aiGenerator=await mod.pipeline("text-generation",model,{
+          device:"wasm",
+          dtype:"q4",
+          progress_callback
+        });
+      }
+    }else{
+      aiGenerator=await mod.pipeline("text-generation",model,{
+        device:"wasm",
+        dtype:"q4",
+        progress_callback
+      });
+    }
+    showAI("AI Tutor ready ✓","good");
+    return aiGenerator;
+  }catch(err){
+    console.error("AI Tutor load failed:",err);
+    showAI("AI Tutor could not load. Open DevTools → Console for the exact error, then try again.","bad");
+    return null;
+  }finally{aiLoading=false}
+}
+async function askAITutor(){
+  const q=current.questions[index],selected=answers[index];
+  if(selected===null){showAI("Choose an answer first, then ask the AI tutor.","bad");return}
+  const button=document.getElementById("ai-button");
+  if(button){button.disabled=true;button.textContent="Thinking…"}
+  const gen=await getAITutor();
+  if(!gen){if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}return}
+  const selectedText=q[4]==="Terminal"?"Kubernetes manifest submission":q[1][selected];
+  const correctText=q[4]==="Terminal"?"Manifest requirements":q[1][q[2]];
+  const referenceExplanation=q[3]||"";
+  const messages=[
+    {role:"system",content:"You are a certification tutor rewriting a verified explanation. The reference explanation is authoritative. Do not invent technical facts or discuss unrelated topics. Return exactly four short labeled lines and STOP. Use these labels: Correct answer:, Why:, Your answer:, Exam tip:. Never repeat words or phrases unnecessarily. The Exam tip must be specific to the question, not generic advice. Maximum 70 words."},
+    {role:"user",content:"Question: "+q[0]+"\nLearner answer: "+selectedText+"\nCorrect answer: "+correctText+"\nVerified explanation: "+referenceExplanation+"\n\nRewrite the verified explanation for this learner. Keep the technical meaning unchanged. If the learner is wrong, explain why in one sentence. Return only the four labeled lines."}
+  ];
+  try{
+    const out=await gen(messages,{max_new_tokens:110,temperature:.2,do_sample:true,repetition_penalty:1.2,no_repeat_ngram_size:4,return_full_text:false});
+    let text="";
+    if(Array.isArray(out)&&out[0]){
+      const g=out[0].generated_text;
+      if(Array.isArray(g)) text=g[g.length-1]?.content||"";
+      else text=String(g||"");
+    }
+    text=cleanTutorOutput(text);
+    showAI(isUsableTutorOutput(text)?text:fallbackTutorExplanation(q,selected),"good");
+  }catch(err){
+    console.error("AI Tutor inference failed:",err);
+    showAI("The local AI model hit an error. You can continue with the built-in explanation and official reference.","bad");
+  }finally{
+    if(button){button.disabled=false;button.textContent="✦ Ask AI Tutor"}
+  }
+}
+function cleanTutorOutput(text){
+  return String(text||"").replace(/<\\|[^>]+\\|>/g,"").replace(/\\s+/g," ").trim();
+}
+function isUsableTutorOutput(text){
+  if(!text || text.length<30 || text.length>700) return false;
+  const lower=text.toLowerCase();
+  if(!["correct answer:","why:","your answer:","exam tip:"].every(x=>lower.includes(x))) return false;
+  const words=lower.match(/[a-z][a-z'-]*/g)||[];
+  if(words.length<12) return false;
+  const counts={};
+  for(const w of words) counts[w]=(counts[w]||0)+1;
+  if(Object.values(counts).some(n=>n>=8)) return false;
+  return true;
+}
+function fallbackTutorExplanation(q,selected){
+  const correct=q[4]==="Terminal"?"the required manifest":q[1][q[2]];
+  const explanation=q[3]||"Review the built-in explanation for the key concept.";
+  const isCorrect=selected===q[2];
+  const tip=getExamTip(q,correct);
+  return "Correct answer: "+correct+"\n\nWhy: "+explanation+"\n\nYour answer: "+(isCorrect?"This matches the correct concept.":"Your answer is different from the concept described by the question.")+"\n\nExam tip: "+tip;
+}
+function getExamTip(q,correct){
+  const text=(q[0]+" "+correct).toLowerCase();
+  if(text.includes("persistentvolumeclaim")||text.includes("storage requirement")) return "PVC = a request for storage; the PV is the storage resource that satisfies that request.";
+  if(text.includes("service")&&text.includes("stable network")) return "Service = a stable network endpoint for a group of Pods; Pod IPs can change.";
+  if(text.includes("deployment")&&text.includes("replica")) return "Deployment = manages replicated Pods and maintains the desired replica count.";
+  if(text.includes("configmap")) return "ConfigMap = non-sensitive configuration data; use Secret for sensitive values.";
+  if(text.includes("secret")) return "Secret = sensitive configuration such as passwords or tokens; ConfigMap is for non-sensitive data.";
+  if(text.includes("networkpolicy")) return "NetworkPolicy controls which Pod traffic is allowed or denied.";
+  if(text.includes("cronjob")) return "CronJob = creates Jobs on a schedule; look for recurring execution.";
+  if(text.includes("job")) return "Job = runs a workload to completion rather than continuously serving traffic.";
+  if(text.includes("readiness")) return "Readiness probe = whether a Pod is ready to receive traffic; liveness is about restarting an unhealthy container.";
+  return "Match the resource to its responsibility: ask what the object is designed to provide or control.";
+}
+function showAI(msg,kind){const el=document.getElementById("ai-tutor");if(el){el.className="ai-tutor "+kind;el.innerHTML="<strong>✦ AI Tutor</strong><p>"+escapeHtml(msg)+"</p>"}}
+function choose(i){answers[index]=i;render()}
+function next(){if(answers[index]===null){alert("Please choose an answer first.");return}if(index<current.questions.length-1){index++;render()}else finish()}
+function finish(){if(attemptSaved)return;clearInterval(timerId);recordAttempt();const correct=answers.reduce((n,a,i)=>n+(a===current.questions[i][2]?1:0),0);const pct=Math.round(correct/current.questions.length*100);document.getElementById("progress-bar").style.width="100%";document.getElementById("score-live").textContent=`${correct}/${current.questions.length} correct`;document.getElementById("question").innerHTML=`<div class="result"><div class="eyebrow">MOCK EXAM COMPLETE</div><div class="result-score">${pct}%</div><p>You got <strong>${correct} of ${current.questions.length}</strong> questions correct.</p></div>`;document.getElementById("options").innerHTML=`<div class="review">${current.questions.map((q,i)=>{const ok=answers[i]===q[2],ref=[q[8],q[7]];return `<div class="review-item"><strong>Q${i+1}. ${escapeHtml(q[0])}</strong><p class="${ok?"correct":"incorrect"}">${ok?"✓ Correct":"✗ Incorrect"} · Your answer: ${answers[i]===null?"Not answered":(q[4]==="Terminal"?"Manifest submission":escapeHtml(q[1][answers[i]]))}</p><p><strong>Correct answer:</strong> ${escapeHtml(q[1][q[2]])}</p><div class="answer-explanation"><strong>Why this answer?</strong><p>${escapeHtml(q[3])}</p></div><div class="question-reference"><strong>📚 Reference</strong><p><a href="${ref[1]}" target="_blank" rel="noopener noreferrer">${escapeHtml(ref[0])} ↗</a></p></div></div>`}).join("")}</div>`;document.getElementById("next-button").textContent="Retake exam";document.getElementById("next-button").onclick=()=>start(currentKey,current.difficulty,current.type)}
+function backToCerts(){clearInterval(timerId);document.getElementById("practice").hidden=true;cards.hidden=false;document.getElementById("next-button").onclick=next}
+buildCards();renderDashboard();
