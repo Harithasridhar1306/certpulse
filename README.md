@@ -62,7 +62,35 @@ GitHub Pages is intentionally used as a static hosting layer; the current learne
 - Recent-attempt history
 - Browser-local AI Tutor
 - AI output validation + deterministic fallback when the local model produces unusable output
-- No paid AI API required
+- No paid AI API required for the browser tutor
+
+## Resource-grounded dynamic question generation
+
+CertPulse now has a resource-ingestion pipeline for keeping the question bank fresh.
+
+```
+Official public documentation
+          ↓
+     data/resources.json
+          ↓
+   GitHub Actions (daily/manual)
+          ↓
+   Fetch + extract source text
+          ↓
+   Gemini generates ORIGINAL practice questions
+          ↓
+   Validate schema + references
+          ↓
+      data/exams.json
+          ↓
+       GitHub Pages
+```
+
+The generated questions are grounded in public documentation and the published certification scope. They are **not live exam questions, leaked questions, or recalled proprietary exam content**. The goal is to create fresh, original practice material that reflects current public documentation.
+
+To enable the refresh workflow, add a GitHub Actions secret named `GEMINI_API_KEY`. The workflow can also be run manually from the Actions tab. Without the secret, the existing question bank remains unchanged.
+
+The resource list lives in `data/resources.json`, and the generator is `scripts/refresh-bank.mjs`.
 
 ## Engineering ideas I'm exploring
 
@@ -107,7 +135,7 @@ This was important because small browser models can produce repetitive or low-qu
 CertPulse is an independent learning project and is not affiliated with Google Cloud, CNCF, Linux Foundation or any certification provider.
 
 
-## Platform architecture — v0.8
+## Platform architecture — v0.9
 
 CertPulse is being evolved from a static learning app into a deployable cloud-native platform.
 
@@ -127,6 +155,9 @@ CertPulse is being evolved from a static learning app into a deployable cloud-na
                      |
                      +-- js-yaml parser + task validation
 
+Dynamic content refresh:
+GitHub Actions -> public documentation -> Gemini -> validated questions -> exams.json -> GitHub Pages
+
 Delivery:
 GitHub Actions -> Docker -> Artifact Registry -> Cloud Run/GKE
 
@@ -136,7 +167,7 @@ Terraform -> Google Cloud
 Kubernetes:
 k8s/deployment.yaml + kustomization.yaml
 
-The backend is intentionally optional for the public GitHub Pages demo. The free static app remains usable while the repository now contains a realistic API and cloud deployment path.
+The backend is intentionally optional for the public GitHub Pages demo. The free static app remains usable while the repository contains a realistic API and cloud deployment path.
 
 ### Hands-on validation
 
