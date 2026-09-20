@@ -1,0 +1,61 @@
+{
+  "GCP": {
+    "name": "GCP Associate Cloud Engineer",
+    "sources": [
+      {
+        "title": "Associate Cloud Engineer exam guide",
+        "url": "https://cloud.google.com/learn/certification/guides/cloud-engineer"
+      },
+      {
+        "title": "Google Cloud documentation",
+        "url": "https://cloud.google.com/docs"
+      },
+      {
+        "title": "Google Kubernetes Engine documentation",
+        "url": "https://cloud.google.com/kubernetes-engine/docs"
+      },
+      {
+        "title": "Google Cloud IAM documentation",
+        "url": "https://cloud.google.com/iam/docs"
+      },
+      {
+        "title": "Google Cloud networking documentation",
+        "url": "https://cloud.google.com/vpc/docs"
+      }
+    ]
+  },
+  "CKA": {
+    "name": "Certified Kubernetes Administrator",
+    "sources": [
+      {
+        "title": "CKA exam curriculum",
+        "url": "https://github.com/cncf/curriculum"
+      },
+      {
+        "title": "Kubernetes documentation",
+        "url": "https://kubernetes.io/docs/"
+      },
+      {
+        "title": "Kubernetes concepts",
+        "url": "https://kubernetes.io/docs/concepts/"
+      }
+    ]
+  },
+  "CKAD": {
+    "name": "Certified Kubernetes Application Developer",
+    "sources": [
+      {
+        "title": "CKAD exam curriculum",
+        "url": "https://github.com/cncf/curriculum"
+      },
+      {
+        "title": "Kubernetes documentation",
+        "url": "https://kubernetes.io/docs/"
+      },
+      {
+        "title": "Kubernetes application concepts",
+        "url": "https://kubernetes.io/docs/concepts/workloads/"
+      }
+    ]
+  }
+}
